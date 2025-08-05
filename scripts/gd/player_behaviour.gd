@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 
 	if action_pressed and direction:
 		move_and_collide(direction * current_movement_dist)
-	
+
 func invert_movement(inv_x: bool = false, inv_y: bool = false):
 	if inv_x: inverter.x = -1
 	else: inverter.x = 1
