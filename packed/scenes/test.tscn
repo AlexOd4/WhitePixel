@@ -58,8 +58,9 @@ scale = Vector2(1, 10)
 texture = SubResource("GradientTexture1D_fo205")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_mmxta")]
-position = Vector2(5, 55)
+position = Vector2(150, 135)
 safe_margin = 0.001
+is_player = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(25, 25)
