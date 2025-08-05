@@ -1,0 +1,12 @@
+class_name Transitioner extends Area2D
+
+@export_file("*.tscn") var scene_to_changue: String
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	self.body_entered.connect(_on_body_entered)
+	
+	
+func _on_body_entered(body:Node2D):
+	if not body is MovableCharacter: return
+	Transition.to_scene(scene_to_changue)

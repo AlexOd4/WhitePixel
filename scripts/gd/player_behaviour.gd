@@ -28,6 +28,7 @@ func _ready() -> void:
 	block_movement(movement_block_up, movement_block_down, movement_block_left, movement_block_right)
 
 func _physics_process(delta: float) -> void:
+	if not Global.can_move: return
 	var direction: Vector2 = Vector2(
 		roundi(Input.get_axis(id.left, id.right)) * inverter.x, #direction.x
 		roundi(Input.get_axis(id.up, id.down)) * inverter.y		#direction.y
