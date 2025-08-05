@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdm53dai78h4g"]
+
+[ext_resource type="PackedScene" uid="uid://oth15pqc8tbh" path="res://packed/player.tscn" id="1_mmxta"]
+[ext_resource type="Shader" uid="uid://b6u055ect1sfx" path="res://scripts/shader/crt_shader.gdshader" id="2_52rys"]
+
+[sub_resource type="Gradient" id="Gradient_c020k"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fo205"]
+gradient = SubResource("Gradient_c020k")
+width = 10
+
+[sub_resource type="Gradient" id="Gradient_mmxta"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_52rys"]
+gradient = SubResource("Gradient_mmxta")
+width = 1
+height = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvyvx"]
+size = Vector2(50, 50)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvyvx"]
+shader = ExtResource("2_52rys")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(150, 150)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.012
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.01
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(15, 50)
+scale = Vector2(1, 10)
+texture = SubResource("GradientTexture1D_fo205")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_mmxta")]
+position = Vector2(5, 55)
+safe_margin = 0.001
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(25, 25)
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-25, -25)
+scale = Vector2(50, 50)
+texture = SubResource("GradientTexture2D_52rys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_yvyvx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 70.0
+offset_top = 55.0
+offset_right = 150.0
+offset_bottom = 95.0
+text = "How Are You?"
+fit_content = true
+scroll_active = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_yvyvx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
