@@ -12,18 +12,17 @@ colors = PackedColorArray(1, 1, 1, 1)
 gradient = SubResource("Gradient_c020k")
 width = 10
 
-[sub_resource type="Gradient" id="Gradient_mmxta"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0)
+[sub_resource type="Gradient" id="Gradient_1yb80"]
+offsets = PackedFloat32Array(1)
 colors = PackedColorArray(1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_52rys"]
-gradient = SubResource("Gradient_mmxta")
-width = 1
-height = 1
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_scwbj"]
+gradient = SubResource("Gradient_1yb80")
+width = 2
+height = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvyvx"]
-size = Vector2(50, 50)
+size = Vector2(50, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52rys"]
 size = Vector2(52, 884)
@@ -44,7 +43,7 @@ size = Vector2(10, 320)
 [node name="background" type="ColorRect" parent="."]
 offset_left = -15.0
 offset_top = -25.0
-offset_right = 301.0
+offset_right = 313.0
 offset_bottom = 315.0
 mouse_filter = 2
 color = Color(0.0470588, 0.0470588, 0.0470588, 1)
@@ -56,18 +55,25 @@ scale = Vector2(1, 10)
 texture = SubResource("GradientTexture1D_fo205")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_1yb80")]
-position = Vector2(5, 55)
-safe_margin = 0.001
+position = Vector2(150, 285)
+safe_margin = 0.1
 is_player = true
 
+[node name="Yellow" parent="." instance=ExtResource("1_1yb80")]
+position = Vector2(140, 295)
+safe_margin = 0.1
+movement_invert_x = true
+
+[node name="Sprite2D" parent="Yellow" index="0"]
+modulate = Color(1, 1, 0, 1)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(25, 25)
+position = Vector2(180, 180)
 
 [node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
 modulate = Color(0, 0, 1, 1)
-position = Vector2(-25, -25)
-scale = Vector2(50, 50)
-texture = SubResource("GradientTexture2D_52rys")
+scale = Vector2(25, 120)
+texture = SubResource("GradientTexture2D_scwbj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_yvyvx")
@@ -121,3 +127,4 @@ texture = SubResource("GradientTexture2D_yvyvx")
 shape = SubResource("RectangleShape2D_mmxta")
 
 [editable path="CharacterBody2D"]
+[editable path="Yellow"]

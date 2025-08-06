@@ -9,4 +9,5 @@ func _ready() -> void:
 	
 func _on_body_entered(body:Node2D):
 	if not body is MovableCharacter: return
+	if not body.is_player: return
 	Transition.to_scene(scene_to_changue)

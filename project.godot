@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Nuevo Proyecto de Juego"
+config/name="White Pixel"
 run/main_scene="uid://cdm53dai78h4g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -29,15 +29,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/_Godot-IDE_/plugin.cfg")
-
-[file_customization]
-
-folder_colors={
-"res://addons/_Godot-IDE_/plugins": "blue",
-"res://addons/_Godot-IDE_/plugins/": "blue",
-"res://addons/_Godot-IDE_/shared_resources/": "teal"
-}
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
 
 [input]
 
@@ -73,6 +65,10 @@ none={
 "deadzone": 0.2,
 "events": []
 }
+
+[physics]
+
+2d/physics_engine="Rapier2D"
 
 [rendering]
 

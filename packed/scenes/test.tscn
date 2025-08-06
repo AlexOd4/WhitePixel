@@ -37,9 +37,16 @@ mouse_filter = 2
 color = Color(0.0470588, 0.0470588, 0.0470588, 1)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_mmxta")]
-position = Vector2(269, 67)
-safe_margin = 0.001
+position = Vector2(295, 5)
 is_player = true
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("1_mmxta")]
+position = Vector2(5, 5)
+movement_invert_x = true
+movement_invert_y = true
+
+[node name="Sprite2D" parent="CharacterBody2D2" index="0"]
+modulate = Color(1, 0, 1, 1)
 
 [node name="Staticwall2D" type="StaticBody2D" parent="."]
 position = Vector2(25, 25)
@@ -70,7 +77,7 @@ energy = 0.25
 color = Color(0.552956, 0.552956, 0.552955, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(295, 140)
+position = Vector2(590, 140)
 script = ExtResource("2_52rys")
 scene_to_changue = "uid://cj4kc4js7dywv"
 
@@ -98,3 +105,4 @@ fit_content = true
 scroll_active = false
 
 [editable path="CharacterBody2D"]
+[editable path="CharacterBody2D2"]

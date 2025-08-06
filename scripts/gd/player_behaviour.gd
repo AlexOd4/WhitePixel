@@ -15,33 +15,53 @@ var inverter: Vector2i = Vector2i.ONE
 @export var movement_block_left: bool
 var current_movement_dist: int = movement_distance
 
+var direction: Vector2i#:
+	#get:
+		#return last_direction
+	#set(value):
+		#if value == Vector2.ZERO:
+			#return
+		#last_direction = value
+
 var id: Dictionary[String, StringName] = {
 	"up" : &"game_up",
 	"down" : &"game_down",
 	"left" : &"game_left",
 	"right" : &"game_right",
 }
-
+var body_collided: Node2D
 
 func _ready() -> void:
 	invert_movement(movement_invert_x, movement_invert_y)
 	block_movement(movement_block_up, movement_block_down, movement_block_left, movement_block_right)
-
+	
 func _physics_process(delta: float) -> void:
 	if not Global.can_move: return
-	var direction: Vector2 = Vector2(
+	direction = Vector2i(
 		roundi(Input.get_axis(id.left, id.right)) * inverter.x, #direction.x
 		roundi(Input.get_axis(id.up, id.down)) * inverter.y		#direction.y
 	)
-	
 	var action_pressed: bool = (
 		Input.is_action_just_pressed("game_left") or Input.is_action_just_pressed("game_right") or
 		Input.is_action_just_pressed("game_up") or Input.is_action_just_pressed("game_down")
 	)
-
+	
 	if action_pressed and direction:
-		move_and_collide(direction * current_movement_dist)
-
+		var kinematic_collision: KinematicCollision2D = move_and_collide(direction * current_movement_dist, false, 0.0)
+		global_position = Vector2(roundf(global_position.x), roundf(global_position.y))
+		if kinematic_collision: body_collided = kinematic_collision.get_collider()
+		else: body_collided = null
+		
+		
+		
+		if body_collided is MovableCharacter and not body_collided.is_player and self.is_player:
+			print(self.global_position, body_collided.global_position," AA ",body_collided.global_position.direction_to(self.global_position))
+			body_collided = body_collided as MovableCharacter
+			#move_and_collide(body_collided.direction * current_movement_dist)
+			#print(body_collided.direction, " and self.", direction)
+	
+	
+	
 func invert_movement(inv_x: bool = false, inv_y: bool = false):
 	if inv_x: inverter.x = -1
 	else: inverter.x = 1
