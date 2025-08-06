@@ -37,7 +37,7 @@ mouse_filter = 2
 color = Color(0.0470588, 0.0470588, 0.0470588, 1)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_mmxta")]
-position = Vector2(295, 5)
+position = Vector2(25, 5)
 is_player = true
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("1_mmxta")]
@@ -96,13 +96,6 @@ texture = SubResource("GradientTexture2D_yvyvx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_mmxta")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_right = 138.0
-offset_bottom = 40.0
-text = "HOLA MI GENTE"
-fit_content = true
-scroll_active = false
 
 [editable path="CharacterBody2D"]
 [editable path="CharacterBody2D2"]

@@ -16,31 +16,38 @@ var inverter: Vector2i = Vector2i.ONE
 var current_movement_dist: int = movement_distance
 
 var direction: Vector2i#:
-	#get:
-		#return last_direction
-	#set(value):
-		#if value == Vector2.ZERO:
-			#return
-		#last_direction = value
-
 var id: Dictionary[String, StringName] = {
 	"up" : &"game_up",
 	"down" : &"game_down",
 	"left" : &"game_left",
 	"right" : &"game_right",
 }
+@onready var areas: Array[Area2D] = [
+	$Areas/AreaLeft, $Areas/AreaUpLeft, $Areas/AreaUp, $Areas/AreaUpRight,
+	$Areas/AreaRight, $Areas/AreaDown, $Areas/AreaDown, $Areas/AreaDownLeft
+]
+
 var body_collided: Node2D
+
 
 func _ready() -> void:
 	invert_movement(movement_invert_x, movement_invert_y)
 	block_movement(movement_block_up, movement_block_down, movement_block_left, movement_block_right)
-	
+	for area in areas:
+		area.area_entered.connect(_on_area_entered.bind(area))
+		area.area_exited.connect(_on_area_exited.bind(area))
+		area.body_entered.connect(_on_body_entered.bind(area))
+		area.body_exited.connect(_on_body_exited.bind(area))
+		
 func _physics_process(delta: float) -> void:
+	# We stops the movements due transitions between scenes
 	if not Global.can_move: return
+	# We get a Vector 2 of integers with the direction of movement in player Input
 	direction = Vector2i(
 		roundi(Input.get_axis(id.left, id.right)) * inverter.x, #direction.x
 		roundi(Input.get_axis(id.up, id.down)) * inverter.y		#direction.y
 	)
+	# We get a state of action_just_pressed of all player control inputs
 	var action_pressed: bool = (
 		Input.is_action_just_pressed("game_left") or Input.is_action_just_pressed("game_right") or
 		Input.is_action_just_pressed("game_up") or Input.is_action_just_pressed("game_down")
@@ -48,20 +55,21 @@ func _physics_process(delta: float) -> void:
 	
 	if action_pressed and direction:
 		var kinematic_collision: KinematicCollision2D = move_and_collide(direction * current_movement_dist, false, 0.0)
-		global_position = Vector2(roundf(global_position.x), roundf(global_position.y))
-		if kinematic_collision: body_collided = kinematic_collision.get_collider()
-		else: body_collided = null
-		
-		
-		
-		if body_collided is MovableCharacter and not body_collided.is_player and self.is_player:
-			print(self.global_position, body_collided.global_position," AA ",body_collided.global_position.direction_to(self.global_position))
-			body_collided = body_collided as MovableCharacter
-			#move_and_collide(body_collided.direction * current_movement_dist)
-			#print(body_collided.direction, " and self.", direction)
 	
-	
-	
+
+func _on_area_entered(area: Area2D, my_area:Area2D):
+	pass
+
+func _on_area_exited(area: Area2D, my_area:Area2D):
+	pass
+
+func _on_body_entered(area: Node2D, my_area:Area2D):
+	pass
+
+func _on_body_exited(area: Node2D, my_area:Area2D):
+	pass
+
+#region CUSTOM Func
 func invert_movement(inv_x: bool = false, inv_y: bool = false):
 	if inv_x: inverter.x = -1
 	else: inverter.x = 1
@@ -77,3 +85,4 @@ func block_movement(block_up: bool = false, block_down: bool = false, block_left
 	else: id.left = &"game_left"
 	if movement_block_right: id.right = "none"
 	else: id.right = &"game_right"
+#endregion
