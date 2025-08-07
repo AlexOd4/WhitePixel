@@ -38,7 +38,6 @@ color = Color(0.0470588, 0.0470588, 0.0470588, 1)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_mmxta")]
 position = Vector2(25, 5)
-is_player = true
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("1_mmxta")]
 position = Vector2(5, 5)

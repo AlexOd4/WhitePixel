@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://oth15pqc8tbh"]
+[gd_scene load_steps=5 format=3 uid="uid://oth15pqc8tbh"]
 
 [ext_resource type="Script" uid="uid://bkkn5k0g3rdyd" path="res://scripts/gd/player_behaviour.gd" id="1_c020k"]
 
@@ -14,9 +14,6 @@ height = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xakqq"]
 size = Vector2(8, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c020k"]
-size = Vector2(5, 5)
-
 [node name="CharacterBody2D" type="CharacterBody2D"]
 motion_mode = 1
 safe_margin = 0.001
@@ -31,50 +28,8 @@ shape = SubResource("RectangleShape2D_xakqq")
 
 [node name="Areas" type="Node2D" parent="."]
 
-[node name="AreaLeft" type="Area2D" parent="Areas"]
-position = Vector2(-10, 0)
+[node name="NearRay" type="RayCast2D" parent="."]
+target_position = Vector2(-10, 0)
 
-[node name="CollisionLeft" type="CollisionShape2D" parent="Areas/AreaLeft"]
-shape = SubResource("RectangleShape2D_c020k")
-
-[node name="AreaRight" type="Area2D" parent="Areas"]
-position = Vector2(10, 0)
-
-[node name="CollisionRight" type="CollisionShape2D" parent="Areas/AreaRight"]
-shape = SubResource("RectangleShape2D_c020k")
-
-[node name="AreaDownRight" type="Area2D" parent="Areas"]
-position = Vector2(10, 10)
-
-[node name="CollisionDownRight" type="CollisionShape2D" parent="Areas/AreaDownRight"]
-shape = SubResource("RectangleShape2D_c020k")
-
-[node name="AreaUpRight" type="Area2D" parent="Areas"]
-position = Vector2(10, -10)
-
-[node name="CollisionUpRight" type="CollisionShape2D" parent="Areas/AreaUpRight"]
-shape = SubResource("RectangleShape2D_c020k")
-
-[node name="AreaUp" type="Area2D" parent="Areas"]
-position = Vector2(0, -10)
-
-[node name="CollisionUp" type="CollisionShape2D" parent="Areas/AreaUp"]
-shape = SubResource("RectangleShape2D_c020k")
-
-[node name="AreaUpLeft" type="Area2D" parent="Areas"]
-position = Vector2(-10, -10)
-
-[node name="CollisionUpLeft" type="CollisionShape2D" parent="Areas/AreaUpLeft"]
-shape = SubResource("RectangleShape2D_c020k")
-
-[node name="AreaDownLeft" type="Area2D" parent="Areas"]
-position = Vector2(-10, 10)
-
-[node name="CollisionDownLeft" type="CollisionShape2D" parent="Areas/AreaDownLeft"]
-shape = SubResource("RectangleShape2D_c020k")
-
-[node name="AreaDown" type="Area2D" parent="Areas"]
-position = Vector2(0, 10)
-
-[node name="CollisionDown" type="CollisionShape2D" parent="Areas/AreaDown"]
-shape = SubResource("RectangleShape2D_c020k")
+[node name="FarRay" type="RayCast2D" parent="."]
+target_position = Vector2(-20, 0)

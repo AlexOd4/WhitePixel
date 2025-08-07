@@ -3,4 +3,4 @@ extends Node
 
 signal player_has_moved()
 
-var can_move:bool = true
+var is_loading:bool = true

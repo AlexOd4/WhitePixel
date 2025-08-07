@@ -58,11 +58,14 @@ texture = SubResource("GradientTexture1D_fo205")
 position = Vector2(150, 285)
 safe_margin = 0.1
 is_player = true
+is_pushable = true
+movement_block_up = true
 
 [node name="Yellow" parent="." instance=ExtResource("1_1yb80")]
 position = Vector2(140, 295)
 safe_margin = 0.1
 movement_invert_x = true
+movement_block_down = true
 
 [node name="Sprite2D" parent="Yellow" index="0"]
 modulate = Color(1, 1, 0, 1)
