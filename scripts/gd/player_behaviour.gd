@@ -51,6 +51,7 @@ func _physics_process(delta: float) -> void:
 		near_ray.target_position = direction * movement_distance
 		far_ray.target_position = direction * movement_distance * 2
 		await get_tree().create_timer(.01).timeout
+		
 		var near_collider: Node2D = near_ray.get_collider()
 		var far_collider: Node2D = far_ray.get_collider()
 		can_move = true
@@ -69,7 +70,7 @@ func _physics_process(delta: float) -> void:
 		
 	if action_pressed and can_move:
 		self.global_position += Vector2(direction) * movement_distance
-	pass
+	
 
 #region CUSTOM Func
 func invert_movement(inv_x: bool = false, inv_y: bool = false):
