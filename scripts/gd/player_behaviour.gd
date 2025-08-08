@@ -47,6 +47,7 @@ func _physics_process(delta: float) -> void:
 		Input.is_action_just_pressed("game_up") or Input.is_action_just_pressed("game_down")
 	)
 	
+	#if action_pressed and is_player: print(direction, movement_distance)
 	if action_pressed:
 		near_ray.target_position = direction * movement_distance
 		far_ray.target_position = direction * movement_distance * 2
@@ -58,21 +59,33 @@ func _physics_process(delta: float) -> void:
 		
 		if near_collider and ((near_collider is MovableCharacter and not near_collider.is_pushable) or not near_collider is MovableCharacter):
 			can_move = false
-		if  is_player and far_collider is MovableCharacter and far_collider.direction == -direction:
+			#print(self.name," :A")
+		#for a player
+		elif  is_player and far_collider is MovableCharacter and not far_collider.is_pushable and far_collider.direction == -direction:
 			can_move = false
-		if is_pushable and not is_player and far_collider is MovableCharacter and far_collider.is_pushable and far_collider.direction == -direction:
+			#print(self.name," :B")
+		#for a pushable object that is not player
+		elif is_pushable and not is_player and far_collider is MovableCharacter and far_collider.is_pushable and far_collider.direction == -direction:
 			can_move = false
-		
+			#print(self.name," :C")
+
 		#TODO: make movable objects pushable by player
-		if near_collider is MovableCharacter and near_collider.is_pushable:
-			near_collider = near_collider as MovableCharacter
+		if near_collider is MovableCharacter and near_collider.is_pushable :
 			near_collider.global_position += Vector2(direction) * near_collider.movement_distance
+			#if is_player: print(self.global_position)
+			
+			#if is_player: self.global_position += Vector2(direction) * movement_distance
 		
-	if action_pressed and can_move:
-		self.global_position += Vector2(direction) * movement_distance
-	
+		if can_move:
+			move(direction, movement_distance, self)
+		
 
 #region CUSTOM Func
+## moves the object in a call_deferred function 
+## direction == direction ; movement == movement_distance ; character == MovableCharacter
+func move(direction: Vector2i, movement:int, character: MovableCharacter = self):
+	character.call_deferred("set_global_position", character.global_position + Vector2(direction) * movement)
+
 func invert_movement(inv_x: bool = false, inv_y: bool = false):
 	if inv_x: inverter.x = -1
 	else: inverter.x = 1

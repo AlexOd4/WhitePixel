@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="White Pixel"
-run/main_scene="uid://cdm53dai78h4g"
+run/main_scene="uid://cj4kc4js7dywv"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://scripts/gd/global.gd"
+Shaker="*res://addons/shaker/src/Shaker.gd"
 Transition="*res://packed/transition.tscn"
 
 [display]
@@ -29,7 +30,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [input]
 
