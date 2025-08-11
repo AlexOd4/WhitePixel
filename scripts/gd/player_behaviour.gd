@@ -5,6 +5,7 @@ class_name MovableCharacter extends CharacterBody2D
 
 @export_group("Movement", "movement")
 @export var movement_distance: int = 10
+@export var movement_turn: int =  1
 @export_subgroup("Invert", "movement_invert")
 @export var movement_invert_x: bool
 @export var movement_invert_y: bool
@@ -35,7 +36,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# We stops the movements due transitions between scenes
-	if not Global.is_loading: return
+	if Global.is_loading or ((Global.movement_counter%movement_turn) != 0): return
 	# We get a Vector 2 of integers with the direction of movement in player Input
 	direction = Vector2i(
 		roundi(Input.get_axis(input_id.left, input_id.right)) * inverter.x, #direction.x
@@ -48,36 +49,31 @@ func _physics_process(delta: float) -> void:
 	)
 	
 	#if action_pressed and is_player: print(direction, movement_distance)
-	if action_pressed:
-		near_ray.target_position = direction * movement_distance
-		far_ray.target_position = direction * movement_distance * 2
-		await get_tree().create_timer(.01).timeout
-		
-		var near_collider: Node2D = near_ray.get_collider()
-		var far_collider: Node2D = far_ray.get_collider()
-		can_move = true
-		
-		if near_collider and ((near_collider is MovableCharacter and not near_collider.is_pushable) or not near_collider is MovableCharacter):
-			can_move = false
-			#print(self.name," :A")
-		#for a player
-		elif  is_player and far_collider is MovableCharacter and not far_collider.is_pushable and far_collider.direction == -direction:
-			can_move = false
-			#print(self.name," :B")
-		#for a pushable object that is not player
-		elif is_pushable and not is_player and far_collider is MovableCharacter and far_collider.is_pushable and far_collider.direction == -direction:
-			can_move = false
-			#print(self.name," :C")
+	if not action_pressed: return
+	
+	near_ray.target_position = direction * movement_distance
+	far_ray.target_position = direction * movement_distance * 2
+	await get_tree().create_timer(.01).timeout
+	
+	var near_collider: Node2D = near_ray.get_collider()
+	var far_collider: Node2D = far_ray.get_collider()
+	can_move = true
+	
+	if near_collider and ((near_collider is MovableCharacter and not near_collider.is_pushable) or not near_collider is MovableCharacter):
+		can_move = false
+	
+	#for a player
+	elif  is_player and far_collider is MovableCharacter and not far_collider.is_pushable and far_collider.direction == -direction:
+		can_move = false
+	
+	#for a pushable object that is not player
+	elif is_pushable and not is_player and far_collider is MovableCharacter and far_collider.is_pushable and far_collider.direction == -direction:
+		can_move = false
 
-		#TODO: make movable objects pushable by player
-		if near_collider is MovableCharacter and near_collider.is_pushable :
-			near_collider.global_position += Vector2(direction) * near_collider.movement_distance
-			#if is_player: print(self.global_position)
-			
-			#if is_player: self.global_position += Vector2(direction) * movement_distance
-		
-		if can_move:
-			move(direction, movement_distance, self)
+	if near_collider is MovableCharacter and near_collider.is_pushable :
+		near_collider.global_position += Vector2(direction) * near_collider.movement_distance
+	if can_move:
+		move(direction, movement_distance, self)
 		
 
 #region CUSTOM Func

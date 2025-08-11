@@ -32,6 +32,10 @@ window/stretch/scale_mode="integer"
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
+[global_group]
+
+text=""
+
 [input]
 
 game_left={
