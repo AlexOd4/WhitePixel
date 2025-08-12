@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	#for a pushable object that is not player
 	elif is_pushable and not is_player and far_collider is MovableCharacter and far_collider.is_pushable and far_collider.direction == -direction:
 		can_move = false
-
+	
 	if near_collider is MovableCharacter and near_collider.is_pushable :
 		near_collider.global_position += Vector2(direction) * near_collider.movement_distance
 	if can_move:
