@@ -34,7 +34,7 @@ func _ready() -> void:
 	invert_movement(movement_invert_x, movement_invert_y)
 	block_movement(movement_block_up, movement_block_down, movement_block_left, movement_block_right)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# We stops the movements due transitions between scenes
 	if Global.is_loading or ((Global.movement_counter%movement_turn) != 0): return
 	# We get a Vector 2 of integers with the direction of movement in player Input
@@ -79,9 +79,8 @@ func _physics_process(delta: float) -> void:
 #region CUSTOM Func
 ## moves the object in a call_deferred function 
 ## direction == direction ; movement == movement_distance ; character == MovableCharacter
-func move(direction: Vector2i, movement:int, character: MovableCharacter = self):
-	character.call_deferred("set_global_position", character.global_position + Vector2(direction) * movement)
-
+func move(dir: Vector2i, movement:int, character: MovableCharacter = self):
+	character.call_deferred("set_global_position", character.global_position + Vector2(dir) * movement)
 func invert_movement(inv_x: bool = false, inv_y: bool = false):
 	if inv_x: inverter.x = -1
 	else: inverter.x = 1
@@ -89,12 +88,12 @@ func invert_movement(inv_x: bool = false, inv_y: bool = false):
 	else: inverter.y = 1
 
 func block_movement(block_up: bool = false, block_down: bool = false, block_left: bool = false, block_right: bool = false):
-	if movement_block_up: input_id.up = "none"
+	if block_up: input_id.up = "none"
 	else: input_id.up = &"game_up"
-	if movement_block_down: input_id.down = "none"
+	if block_down: input_id.down = "none"
 	else: input_id.down = &"game_down"
-	if movement_block_left: input_id.left = "none"
+	if block_left: input_id.left = "none"
 	else: input_id.left = &"game_left"
-	if movement_block_right: input_id.right = "none"
+	if block_right: input_id.right = "none"
 	else: input_id.right = &"game_right"
 #endregion

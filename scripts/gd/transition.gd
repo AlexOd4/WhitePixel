@@ -9,7 +9,7 @@ func to_scene(scene_path:String) -> void:
 	scene_to_changue = load(scene_path)
 	$AnimationPlayer.play("transition_start")
 
-func _change_scene(anim_name: StringName) -> void:
+func _change_scene(_anim_name: StringName) -> void:
 	$AnimationPlayer.animation_finished.disconnect(_change_scene)
 	get_tree().change_scene_to_packed(scene_to_changue)
 	$AnimationPlayer.play("transition_end")

@@ -8,8 +8,8 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fo205"]
 gradient = SubResource("Gradient_c020k")
-width = 2
-height = 2
+width = 1
+height = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xakqq"]
 size = Vector2(8, 8)
@@ -20,7 +20,8 @@ safe_margin = 0.001
 script = ExtResource("1_c020k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(5, 5)
+position = Vector2(-5, -5)
+scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_fo205")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

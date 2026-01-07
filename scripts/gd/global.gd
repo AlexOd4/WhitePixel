@@ -24,7 +24,6 @@ func _light_scene_text() -> void:
 	#TODO: fix on changue scene update text
 	var text_group = get_tree().get_nodes_in_group("text")
 	if text_group == []: return
-	print(text_group[0].modulate)
 	if tween_text: tween_text.kill()
 	tween_text = get_tree().create_tween().bind_node(text_group[0])
 	
