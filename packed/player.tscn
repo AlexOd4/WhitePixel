@@ -14,10 +14,11 @@ height = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xakqq"]
 size = Vector2(8, 8)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
 safe_margin = 0.001
 script = ExtResource("1_c020k")
+is_player = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, -5)

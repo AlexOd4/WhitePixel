@@ -105,11 +105,11 @@ color = Color(0.552956, 0.552956, 0.552955, 1)
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_wiilu")]
 position = Vector2(25, 275)
 safe_margin = 0.1
-is_player = true
 
 [node name="WinArea2D" type="Area2D" parent="."]
 position = Vector2(295, 140)
 script = ExtResource("3_o0ebv")
+scene_to_changue = 3
 
 [node name="Sprite2D2" type="Sprite2D" parent="WinArea2D"]
 modulate = Color(0, 1, 0, 1)
@@ -129,7 +129,7 @@ shape = SubResource("RectangleShape2D_mmxta")
 
 [node name="DieArea2D" type="Area2D" parent="."]
 script = ExtResource("3_o0ebv")
-scene_to_changue = "uid://bcblxntgxrco7"
+scene_to_changue = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DieArea2D"]
 position = Vector2(125, 55)

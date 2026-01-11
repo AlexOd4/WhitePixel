@@ -1,9 +1,12 @@
 extends Node
 
-signal player_has_moved()
+signal movement_input(global_movement_counter: int)
 
 var is_loading:bool = false
-var movement_counter:int = 0
+var movement_counter:int = 0:
+	set(value):
+		movement_counter = value
+		movement_input.emit(movement_counter)
 var action_pressed: bool
 
 var tween_text: Tween
