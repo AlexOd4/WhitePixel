@@ -18,6 +18,7 @@ size = Vector2(8, 8)
 motion_mode = 1
 safe_margin = 0.001
 script = ExtResource("1_c020k")
+movement_distance = Vector2(10, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, -5)
@@ -27,8 +28,14 @@ texture = SubResource("GradientTexture2D_fo205")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xakqq")
 
-[node name="NearRay" type="RayCast2D" parent="."]
-target_position = Vector2(-10, 0)
+[node name="NearArea" type="Area2D" parent="."]
+position = Vector2(-10, 0)
 
-[node name="FarRay" type="RayCast2D" parent="."]
-target_position = Vector2(-20, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
+shape = SubResource("RectangleShape2D_xakqq")
+
+[node name="FarArea" type="Area2D" parent="."]
+position = Vector2(-20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FarArea"]
+shape = SubResource("RectangleShape2D_xakqq")

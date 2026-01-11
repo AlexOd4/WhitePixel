@@ -42,7 +42,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_cx77y")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7qole"]
-size = Vector2(16, 16)
+size = Vector2(18, 18)
 
 [sub_resource type="Gradient" id="Gradient_c020k"]
 interpolation_mode = 1
@@ -98,14 +98,21 @@ position = Vector2(185, 145)
 safe_margin = 0.1
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("1_mmxta")]
-position = Vector2(140, 140)
+position = Vector2(140, 30)
 safe_margin = 0.1
+movement_distance = Vector2(20, 20)
 
 [node name="Sprite2D" parent="CharacterBody2D2" index="0"]
 position = Vector2(-10, -10)
 scale = Vector2(20, 20)
 
 [node name="CollisionShape2D" parent="CharacterBody2D2" index="1"]
+shape = SubResource("RectangleShape2D_7qole")
+
+[node name="CollisionShape2D" parent="CharacterBody2D2/NearArea" index="0"]
+shape = SubResource("RectangleShape2D_7qole")
+
+[node name="CollisionShape2D" parent="CharacterBody2D2/FarArea" index="0"]
 shape = SubResource("RectangleShape2D_7qole")
 
 [node name="WinArea" type="Area2D" parent="."]
