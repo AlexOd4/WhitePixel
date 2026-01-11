@@ -8,7 +8,6 @@ func _ready() -> void:
 	
 	
 func _on_body_entered(body:Node2D):
-	if not body is MovableCharacter: return
-	if not body.is_player: return
+	if not body is Player: return
 	body.queue_free()
 	Transition.to_scene(Name.LEVELS[scene_to_changue])

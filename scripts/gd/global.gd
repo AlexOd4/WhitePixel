@@ -1,28 +1,59 @@
 extends Node
 
-signal movement_input(global_movement_counter: int)
+signal movement_input(global_movement_counter: int, movement_direction:Vector2)
 
 var is_loading:bool = false
 var movement_counter:int = 0:
 	set(value):
+		if is_holding: await get_tree().create_timer(.25).timeout
+		if not only_one_direction: return
+		if stop_adding_counter: return
+		is_holding = true
+		
+		if movement_counter == value: return
 		movement_counter = value
-		movement_input.emit(movement_counter)
-var action_pressed: bool
-
+		movement_input.emit(movement_counter, direction)
+		
+	
+var stop_adding_counter: bool
+var is_holding: bool
+var only_one_direction: bool
+var direction: Vector2i:
+	set(value):
+		if value.x and not value.y: only_one_direction = true
+		elif not value.x and value.y: only_one_direction = true
+		elif value.x and value.y: only_one_direction = false
+		elif not value.x and not value.y: only_one_direction = false
+		
+		if value.x and value.y: return
+		direction = value
 var tween_text: Tween
 
 func _input(event: InputEvent) -> void:
+	
 	if is_loading: movement_counter = 0; return
 	
-	if (event.is_action_pressed("game_up") or event.is_action_pressed("game_down") or
-		event.is_action_pressed("game_left") or event.is_action_pressed("game_right")):
-			movement_counter += 1
-	else: return
+	if not (	event.is_action("game_up") or event.is_action("game_down") or
+		event.is_action("game_left") or event.is_action("game_right")
+		): return
+	
+	direction = Vector2(
+		roundf(Input.get_axis("game_left", "game_right")), 
+		roundf(Input.get_axis("game_up", "game_down"))
+	)
+	
+	
+	
+	if event.is_pressed():
+		stop_adding_counter = false
+		movement_counter += 1
+	elif event.is_released():
+		stop_adding_counter = true
+		is_holding = false
 	
 	_light_scene_text()
 
 #region Custom Funcs
-
 func _light_scene_text() -> void:
 	#TODO: fix on changue scene update text
 	var text_group = get_tree().get_nodes_in_group("text")
