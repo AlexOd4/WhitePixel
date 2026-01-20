@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://itqmdoxrudqb" path="res://white.png" id="1_7qole"]
 [ext_resource type="PackedScene" uid="uid://oth15pqc8tbh" path="res://packed/player.tscn" id="1_mmxta"]
 [ext_resource type="Script" uid="uid://dmrbjxkuvik78" path="res://scripts/gd/transitioner.gd" id="2_52rys"]
+[ext_resource type="PackedScene" uid="uid://wxrcwp7tw010" path="res://packed/box_area_2d.tscn" id="3_2x666"]
 [ext_resource type="Script" uid="uid://cqn0rrxwerl2u" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="4_2x666"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cx77y"]
@@ -40,9 +41,6 @@ texture_region_size = Vector2i(10, 10)
 tile_size = Vector2i(10, 10)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_cx77y")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qole"]
-size = Vector2(18, 18)
 
 [sub_resource type="Gradient" id="Gradient_c020k"]
 interpolation_mode = 1
@@ -93,27 +91,14 @@ energy = 0.25
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.552956, 0.552956, 0.552955, 1)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_mmxta")]
+[node name="Player" parent="." instance=ExtResource("1_mmxta")]
 position = Vector2(185, 145)
-safe_margin = 0.1
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("1_mmxta")]
-position = Vector2(140, 30)
-safe_margin = 0.1
-movement_distance = Vector2(20, 20)
+[node name="BoxArea2D" parent="." instance=ExtResource("3_2x666")]
+position = Vector2(135, 145)
 
-[node name="Sprite2D" parent="CharacterBody2D2" index="0"]
-position = Vector2(-10, -10)
-scale = Vector2(20, 20)
-
-[node name="CollisionShape2D" parent="CharacterBody2D2" index="1"]
-shape = SubResource("RectangleShape2D_7qole")
-
-[node name="CollisionShape2D" parent="CharacterBody2D2/NearArea" index="0"]
-shape = SubResource("RectangleShape2D_7qole")
-
-[node name="CollisionShape2D" parent="CharacterBody2D2/FarArea" index="0"]
-shape = SubResource("RectangleShape2D_7qole")
+[node name="BoxArea2D2" parent="." instance=ExtResource("3_2x666")]
+position = Vector2(125, 145)
 
 [node name="WinArea" type="Area2D" parent="."]
 position = Vector2(295, 140)
@@ -142,5 +127,3 @@ position = Vector2(150, 150)
 [node name="ShakerComponent2D" type="Node2D" parent="Camera2D"]
 script = ExtResource("4_2x666")
 metadata/_custom_type_script = "uid://cqn0rrxwerl2u"
-
-[editable path="CharacterBody2D2"]

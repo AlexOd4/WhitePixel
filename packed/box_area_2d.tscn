@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://wxrcwp7tw010"]
+
+[ext_resource type="Script" uid="uid://bj2y0fvobyjel" path="res://scripts/gd/box_area_2d.gd" id="1_jpd40"]
+
+[sub_resource type="Gradient" id="Gradient_2urj8"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f65wn"]
+gradient = SubResource("Gradient_2urj8")
+width = 1
+height = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfd2d"]
+size = Vector2(8, 8)
+
+[node name="BoxArea2D" type="Area2D" groups=["box"]]
+collision_layer = 3
+script = ExtResource("1_jpd40")
+metadata/_custom_type_script = "uid://bj2y0fvobyjel"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(-4.999999, -4.999999)
+scale = Vector2(9.999998, 9.999998)
+texture = SubResource("GradientTexture2D_f65wn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lfd2d")

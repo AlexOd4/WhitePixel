@@ -5,7 +5,7 @@ signal movement_input(global_movement_counter: int, movement_direction:Vector2)
 var is_loading:bool = false
 var movement_counter:int = 0:
 	set(value):
-		if is_holding: await get_tree().create_timer(.25).timeout
+		if is_holding: await get_tree().create_timer(.15).timeout
 		if not only_one_direction: return
 		if stop_adding_counter: return
 		is_holding = true

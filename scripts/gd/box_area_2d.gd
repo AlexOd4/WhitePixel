@@ -1,0 +1,1 @@
+class_name BoxArea2D extends MovableArea2D

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://oth15pqc8tbh"]
 
-[ext_resource type="Script" uid="uid://bkkn5k0g3rdyd" path="res://scripts/gd/player_behaviour.gd" id="1_c020k"]
+[ext_resource type="Script" uid="uid://bkkn5k0g3rdyd" path="res://scripts/gd/input_movable_area_2d.gd" id="1_c020k"]
 
 [sub_resource type="Gradient" id="Gradient_c020k"]
 offsets = PackedFloat32Array(1)
@@ -14,11 +14,9 @@ height = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xakqq"]
 size = Vector2(8, 8)
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
-motion_mode = 1
-safe_margin = 0.001
+[node name="CharacterBody2D" type="Area2D" groups=["Player"]]
 script = ExtResource("1_c020k")
-movement_distance = Vector2(10, 10)
+metadata/_custom_type_script = "uid://bkkn5k0g3rdyd"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, -5)
@@ -30,12 +28,14 @@ shape = SubResource("RectangleShape2D_xakqq")
 
 [node name="NearArea" type="Area2D" parent="."]
 position = Vector2(-10, 0)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
 shape = SubResource("RectangleShape2D_xakqq")
 
 [node name="FarArea" type="Area2D" parent="."]
 position = Vector2(-20, 0)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FarArea"]
 shape = SubResource("RectangleShape2D_xakqq")

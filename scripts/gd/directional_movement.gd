@@ -15,9 +15,9 @@ func _ready() -> void:
 
 func move(global_movement_counter: int) -> void:
 	if (global_movement_counter % movement_treshold) != 0: return
-	if not ray.get_collider() is MovableCharacter and not ray.get_collider() == null: 
-		ray.target_position = -ray.target_position
-		direction = -direction
+	#if not ray.get_collider() is MovableCharacter and not ray.get_collider() == null: 
+		#ray.target_position = -ray.target_position
+		#direction = -direction
 	set_deferred("global_position", global_position + direction * movement_size)
 	
 	

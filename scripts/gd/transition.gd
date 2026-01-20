@@ -14,4 +14,6 @@ func _change_scene(_anim_name: StringName) -> void:
 	get_tree().change_scene_to_packed(scene_to_changue)
 	$AnimationPlayer.play("transition_end")
 	Global.is_loading = false
-	
+
+func reset() -> void:
+	print("TODO: RESET")

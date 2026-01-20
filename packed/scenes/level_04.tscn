@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://oth15pqc8tbh" path="res://packed/player.tscn" id="2_4u6m8"]
 [ext_resource type="Script" uid="uid://dmrbjxkuvik78" path="res://scripts/gd/transitioner.gd" id="3_lfd2d"]
 [ext_resource type="Script" uid="uid://cqn0rrxwerl2u" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="4_0ndmv"]
-[ext_resource type="PackedScene" uid="uid://dodwilf6p6goe" path="res://packed/directional_area_transitioner.tscn" id="5_4u6m8"]
+[ext_resource type="PackedScene" uid="uid://dodwilf6p6goe" path="res://packed/die_moving_area_2d.tscn" id="5_4u6m8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ypeg"]
 resource_name = "White"
@@ -86,10 +86,10 @@ color = Color(0.552956, 0.552956, 0.552955, 1)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_4u6m8")]
 position = Vector2(25, 145)
-safe_margin = 0.1
 
 [node name="WinArea2D" type="Area2D" parent="."]
 position = Vector2(295, 140)
+collision_layer = 2
 script = ExtResource("3_lfd2d")
 
 [node name="Sprite2D2" type="Sprite2D" parent="WinArea2D"]
@@ -126,53 +126,68 @@ metadata/_custom_type_script = "uid://cqn0rrxwerl2u"
 
 [node name="DieDirectionalMovementArea" parent="." instance=ExtResource("5_4u6m8")]
 position = Vector2(70, 10)
+movement_distance = Vector2(20, 20)
 
 [node name="CollisionShape2D" parent="DieDirectionalMovementArea" index="0"]
 shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="Sprite2D" parent="DieDirectionalMovementArea" index="1"]
-position = Vector2(-10, -10)
 scale = Vector2(19.999998, 20)
+
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea/NearArea" index="0"]
+shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="DieDirectionalMovementArea2" parent="." instance=ExtResource("5_4u6m8")]
 position = Vector2(110, 30)
+base_directions = Array[Vector2]([Vector2(0, 1), Vector2(-1, 0)])
 
 [node name="CollisionShape2D" parent="DieDirectionalMovementArea2" index="0"]
 shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="Sprite2D" parent="DieDirectionalMovementArea2" index="1"]
-position = Vector2(-10, -10)
 scale = Vector2(19.999998, 20)
+
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea2/NearArea" index="0"]
+shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="DieDirectionalMovementArea3" parent="." instance=ExtResource("5_4u6m8")]
 position = Vector2(150, 50)
+movement_distance = Vector2(20, 20)
 
 [node name="CollisionShape2D" parent="DieDirectionalMovementArea3" index="0"]
 shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="Sprite2D" parent="DieDirectionalMovementArea3" index="1"]
-position = Vector2(-10, -10)
 scale = Vector2(19.999998, 20)
+
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea3/NearArea" index="0"]
+shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="DieDirectionalMovementArea4" parent="." instance=ExtResource("5_4u6m8")]
 position = Vector2(190, 70)
+movement_distance = Vector2(20, 20)
 
 [node name="CollisionShape2D" parent="DieDirectionalMovementArea4" index="0"]
 shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="Sprite2D" parent="DieDirectionalMovementArea4" index="1"]
-position = Vector2(-10, -10)
 scale = Vector2(19.999998, 20)
+
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea4/NearArea" index="0"]
+shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="DieDirectionalMovementArea5" parent="." instance=ExtResource("5_4u6m8")]
 position = Vector2(230, 90)
+movement_distance = Vector2(20, 20)
 
 [node name="CollisionShape2D" parent="DieDirectionalMovementArea5" index="0"]
 shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="Sprite2D" parent="DieDirectionalMovementArea5" index="1"]
-position = Vector2(-10, -10)
 scale = Vector2(19.999998, 20)
+
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea5/NearArea" index="0"]
+shape = SubResource("RectangleShape2D_lfd2d")
 
 [editable path="DieDirectionalMovementArea"]
 [editable path="DieDirectionalMovementArea2"]

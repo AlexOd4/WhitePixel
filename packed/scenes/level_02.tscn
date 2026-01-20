@@ -97,28 +97,27 @@ color = Color(0.552956, 0.552956, 0.552955, 1)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_uqa0v")]
 position = Vector2(25, 275)
-safe_margin = 0.1
-is_player = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="WinArea2D" type="Area2D" parent="."]
 position = Vector2(295, 140)
+collision_layer = 2
 script = ExtResource("3_1n7uo")
 scene_to_changue = 2
 
-[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D2" type="Sprite2D" parent="WinArea2D"]
 modulate = Color(0, 1, 0, 1)
 position = Vector2(0, -140)
 scale = Vector2(1, 300)
 texture = SubResource("GradientTexture1D_fo205")
 
-[node name="PointLight2D" type="PointLight2D" parent="Area2D/Sprite2D2"]
+[node name="PointLight2D" type="PointLight2D" parent="WinArea2D/Sprite2D2"]
 position = Vector2(-70.5, 0.5)
 scale = Vector2(2.51667, 0.00333333)
 color = Color(0, 1, 0, 1)
 energy = 5.0
 texture = SubResource("GradientTexture2D_yvyvx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea2D"]
 shape = SubResource("RectangleShape2D_mmxta")
 
 [node name="Camera2D" type="Camera2D" parent="."]

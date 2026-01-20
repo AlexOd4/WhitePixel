@@ -1,9 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dodwilf6p6goe"]
 
-[ext_resource type="Script" uid="uid://ble0f4j00np3i" path="res://packed/scenes/directional_movement.gd" id="1_4c3nr"]
+[ext_resource type="Script" uid="uid://ccwaenps1olh2" path="res://scripts/gd/moving_area_2d.gd" id="1_4c3nr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfd2d"]
-size = Vector2(20, 10)
 
 [sub_resource type="Gradient" id="Gradient_2urj8"]
 offsets = PackedFloat32Array(1)
@@ -24,25 +23,29 @@ height = 30
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
-[node name="DieDirectionalMovementArea" type="Area2D"]
+[node name="DieMovingArea2D" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_4c3nr")
-level = 3
+metadata/_custom_type_script = "uid://ccwaenps1olh2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lfd2d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(-10, -5)
-scale = Vector2(19.999998, 10)
+position = Vector2(-10, -10)
+scale = Vector2(20, 20)
 texture = SubResource("GradientTexture2D_f65wn")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Sprite2D"]
-position = Vector2(0.50000006, 0.49999997)
+position = Vector2(0.5, 0.50000006)
 scale = Vector2(0.10000001, 0.099999994)
 color = Color(1, 0, 0, 1)
 energy = 5.0
 texture = SubResource("GradientTexture2D_0ndmv")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 10)
+[node name="NearArea" type="Area2D" parent="."]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
+shape = SubResource("RectangleShape2D_lfd2d")

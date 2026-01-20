@@ -90,13 +90,12 @@ energy = 0.25
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.552956, 0.552956, 0.552955, 1)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_1yb80")]
+[node name="Player" parent="." instance=ExtResource("1_1yb80")]
 position = Vector2(185, 145)
-safe_margin = 0.1
-is_player = true
 
 [node name="WinArea" type="Area2D" parent="."]
 position = Vector2(295, 140)
+collision_layer = 2
 script = ExtResource("2_scwbj")
 scene_to_changue = 1
 

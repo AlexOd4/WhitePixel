@@ -104,10 +104,10 @@ color = Color(0.552956, 0.552956, 0.552955, 1)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_wiilu")]
 position = Vector2(25, 275)
-safe_margin = 0.1
 
 [node name="WinArea2D" type="Area2D" parent="."]
 position = Vector2(295, 140)
+collision_layer = 2
 script = ExtResource("3_o0ebv")
 scene_to_changue = 3
 
@@ -128,6 +128,7 @@ texture = SubResource("GradientTexture2D_yvyvx")
 shape = SubResource("RectangleShape2D_mmxta")
 
 [node name="DieArea2D" type="Area2D" parent="."]
+collision_layer = 2
 script = ExtResource("3_o0ebv")
 scene_to_changue = 2
 
