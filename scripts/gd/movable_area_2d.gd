@@ -16,6 +16,8 @@ func _ready() -> void:
 func move(movement_direction: Vector2) -> void:
 	if is_being_pushed: is_being_pushed = false; return;
 	set_deferred("global_position",  global_position + movement_direction * movement_distance)
+	
+
 func push(movement_direction: Vector2, push_distance: Vector2) -> void:
 	is_being_pushed = true
 	set_deferred("global_position", global_position + movement_direction * push_distance)

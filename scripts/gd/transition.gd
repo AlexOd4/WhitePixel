@@ -16,4 +16,4 @@ func _change_scene(_anim_name: StringName) -> void:
 	Global.is_loading = false
 
 func reset() -> void:
-	print("TODO: RESET")
+	to_scene(get_tree().current_scene.scene_file_path)
