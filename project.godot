@@ -8,17 +8,21 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="White Pixel"
 run/main_scene="uid://cj4kc4js7dywv"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://scripts/gd/global.gd"
-Shaker="*res://addons/shaker/src/Shaker.gd"
+Shaker="*uid://ekkkl0i8v2b4"
 Transition="*res://packed/transition.tscn"
 
 [display]

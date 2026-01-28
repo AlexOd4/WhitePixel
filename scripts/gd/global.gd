@@ -11,11 +11,13 @@ var movement_counter:int = 0:
 		
 		is_holding = true
 		
-		if movement_counter == value: return
-		movement_counter = value
-		movement_input.emit(movement_counter, direction)
+		visible_counter += 1
 		
-	
+		if movement_counter >= 10:
+			movement_counter = 1
+		else: movement_counter = value
+		movement_input.emit(movement_counter, direction)
+var visible_counter: int = 0
 var stop_adding_counter: bool
 var is_holding: bool
 var only_one_direction: bool
@@ -33,7 +35,10 @@ var tween_text: Tween
 
 func _input(event: InputEvent) -> void:
 	
-	if is_loading: movement_counter = 0; return
+	if is_loading: 
+		movement_counter = 0 
+		visible_counter = 0
+		return
 	
 	if not (	event.is_action("game_up") or event.is_action("game_down") or
 		event.is_action("game_left") or event.is_action("game_right")
@@ -52,6 +57,7 @@ func _input(event: InputEvent) -> void:
 			await get_tree().create_timer(.5).timeout
 			
 		movement_counter += 1
+		print(visible_counter, " A ",movement_counter)
 	elif event.is_released():
 		stop_adding_counter = true
 		is_holding = false
@@ -68,6 +74,6 @@ func _light_scene_text() -> void:
 	tween_text.tween_property(text_group[0], "modulate", Color.hex(0x3a3a3a88), 0.5).set_delay(2.0)
 	
 	text_group[0] = text_group[0] as RichTextLabel
-	text_group[0].text = str(movement_counter)
+	text_group[0].text = str(visible_counter)
 
 #endregion
