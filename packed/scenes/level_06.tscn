@@ -139,16 +139,16 @@ size = Vector2(10, 320)
 size = Vector2(30, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1s17"]
-size = Vector2(28, 30)
+size = Vector2(28, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol6o8"]
 size = Vector2(10, 10)
 
-[sub_resource type="Gradient" id="Gradient_5nooi"]
+[sub_resource type="Gradient" id="Gradient_ol6o8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3m3i8"]
-gradient = SubResource("Gradient_5nooi")
+gradient = SubResource("Gradient_ol6o8")
 width = 30
 height = 30
 fill = 2
@@ -381,37 +381,37 @@ base_directions = Array[Vector2]([Vector2(0, -1)])
 movement_distance = Vector2(30, 30)
 movement_turn = 9
 
-[node name="CollisionShape2D" parent="DieDirectionalMovementArea" index="0"]
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea" index="0" unique_id=137769851]
 shape = SubResource("RectangleShape2D_3m3i8")
 
-[node name="Sprite2D" parent="DieDirectionalMovementArea" index="1"]
+[node name="Sprite2D" parent="DieDirectionalMovementArea" index="1" unique_id=92383046]
 position = Vector2(-15, -14.999995)
 scale = Vector2(29.999996, 29.99999)
 
-[node name="NearArea" parent="DieDirectionalMovementArea" index="2"]
+[node name="NearArea" parent="DieDirectionalMovementArea" index="2" unique_id=275284376]
 collision_mask = 17
 
-[node name="CollisionShape2D" parent="DieDirectionalMovementArea/NearArea" index="0"]
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea/NearArea" index="0" unique_id=651984149]
 shape = SubResource("RectangleShape2D_p1s17")
 
 [node name="DieDirectionalMovementArea4" parent="." unique_id=1937249571 instance=ExtResource("5_p1s17")]
 position = Vector2(75, 75)
 collision_mask = 17
 
-[node name="CollisionShape2D" parent="DieDirectionalMovementArea4" index="0"]
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea4" index="0" unique_id=137769851]
 shape = SubResource("RectangleShape2D_ol6o8")
 
-[node name="Sprite2D" parent="DieDirectionalMovementArea4" index="1"]
+[node name="Sprite2D" parent="DieDirectionalMovementArea4" index="1" unique_id=92383046]
 position = Vector2(-4.999996, -4.9999933)
 scale = Vector2(9.9999895, 9.999988)
 
-[node name="PointLight2D2" parent="DieDirectionalMovementArea4/Sprite2D" index="0"]
+[node name="PointLight2D2" parent="DieDirectionalMovementArea4/Sprite2D" index="0" unique_id=278936844]
 texture = SubResource("GradientTexture2D_3m3i8")
 
-[node name="NearArea" parent="DieDirectionalMovementArea4" index="2"]
+[node name="NearArea" parent="DieDirectionalMovementArea4" index="2" unique_id=275284376]
 collision_mask = 17
 
-[node name="CollisionShape2D" parent="DieDirectionalMovementArea4/NearArea" index="0"]
+[node name="CollisionShape2D" parent="DieDirectionalMovementArea4/NearArea" index="0" unique_id=651984149]
 shape = SubResource("RectangleShape2D_jwlch")
 
 [node name="TextureRect" type="RichTextLabel" parent="." unique_id=101619519 groups=["text"]]

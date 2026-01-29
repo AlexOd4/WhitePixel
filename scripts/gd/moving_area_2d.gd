@@ -17,15 +17,19 @@ func _ready() -> void:
 func _on_movement_input(global_movement_counter: int, _movement_direction:Vector2) -> void:
 	if  not global_movement_counter % movement_turn == 0: return
 	
-	move(base_direction)
 	
-	if not near_area.has_overlapping_bodies(): return
-	
-	if base_directions.size() <= 0: printerr("ERROR")
-	elif base_directions.size() == 1: base_direction = -base_direction
-	else: next_direction()
+	if near_area.has_overlapping_bodies() or (near_area.has_overlapping_areas() and near_area.get_overlapping_areas()[0] is BoxArea2D):
+		for near_areas in near_area.get_overlapping_areas():
+			print(near_areas.name)
+			if near_areas.name == "NearArea": 
+				return
 		
-	near_area.position = base_direction * movement_distance
+		if base_directions.size() <= 0: printerr("ERROR")
+		elif base_directions.size() == 1: base_direction = -base_direction
+		else: next_direction()
+			
+		near_area.position = base_direction * movement_distance
+	move(base_direction)
 
 func next_direction() -> void:
 	index += 1

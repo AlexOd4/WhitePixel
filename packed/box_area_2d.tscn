@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://wxrcwp7tw010"]
+[gd_scene format=3 uid="uid://wxrcwp7tw010"]
 
 [ext_resource type="Script" uid="uid://bj2y0fvobyjel" path="res://scripts/gd/box_area_2d.gd" id="1_jpd40"]
 
@@ -14,18 +14,21 @@ height = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfd2d"]
 size = Vector2(8, 8)
 
-[node name="BoxArea2D" type="Area2D" groups=["box"]]
+[node name="BoxArea2D" type="Area2D" unique_id=604764735 groups=["box"]]
 collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_jpd40")
 metadata/_custom_type_script = "uid://bj2y0fvobyjel"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=827142545]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(-4.999999, -4.999999)
 scale = Vector2(9.999998, 9.999998)
 texture = SubResource("GradientTexture2D_f65wn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=100838296]
 shape = SubResource("RectangleShape2D_lfd2d")
 
-[node name="NearArea" type="Area2D" parent="."]
+[node name="NearArea" type="Area2D" parent="." unique_id=4342791]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

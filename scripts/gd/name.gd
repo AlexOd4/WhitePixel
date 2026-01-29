@@ -19,9 +19,9 @@ const LEVELS: Dictionary[Level, String] = {
 	Level.N03 : "uid://bcblxntgxrco7",
 	Level.N04 : "uid://dahju1ssold4x",
 	Level.N05 : "uid://c5sdra2snx7y",
-	Level.N06 : "",
-	Level.N07 : "",
-	Level.N08 : "",
-	Level.N09 : "",
-	Level.N10 : ""
+	Level.N06 : "uid://bh7df7vavcudt",
+	Level.N07 : "uid://cqi5csybaria2",
+	Level.N08 : "uid://b0e22ek44jguh",
+	Level.N09 : "uid://dw7wrgf7y2gbk",
+	Level.N10 : "uid://dbkjc8ksnon6"
 }

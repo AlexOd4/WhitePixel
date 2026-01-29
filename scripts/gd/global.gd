@@ -57,7 +57,6 @@ func _input(event: InputEvent) -> void:
 			await get_tree().create_timer(.5).timeout
 			
 		movement_counter += 1
-		print(visible_counter, " A ",movement_counter)
 	elif event.is_released():
 		stop_adding_counter = true
 		is_holding = false
