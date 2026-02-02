@@ -22,7 +22,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://scripts/gd/global.gd"
-Shaker="*uid://ekkkl0i8v2b4"
 Transition="*res://packed/transition.tscn"
 
 [display]
@@ -30,11 +29,10 @@ Transition="*res://packed/transition.tscn"
 window/size/viewport_width=300
 window/size/viewport_height=300
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [global_group]
 

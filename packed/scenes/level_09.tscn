@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://itqmdoxrudqb" path="res://white.png" id="1_1olgw"]
 [ext_resource type="PackedScene" uid="uid://oth15pqc8tbh" path="res://packed/player.tscn" id="2_cdbh6"]
 [ext_resource type="Script" uid="uid://dmrbjxkuvik78" path="res://scripts/gd/transitioner.gd" id="3_q7l8j"]
-[ext_resource type="Script" uid="uid://cqn0rrxwerl2u" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="4_6fvmi"]
+[ext_resource type="PackedScene" uid="uid://wxrcwp7tw010" path="res://packed/box_area_2d.tscn" id="5_q7l8j"]
+[ext_resource type="PackedScene" uid="uid://dodwilf6p6goe" path="res://packed/die_moving_area_2d.tscn" id="6_6fvmi"]
+[ext_resource type="Script" uid="uid://ccwaenps1olh2" path="res://scripts/gd/moving_area_2d.gd" id="6_fhea4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ypeg"]
 resource_name = "White"
@@ -77,6 +79,42 @@ tile_size = Vector2i(10, 10)
 physics_layer_0/collision_layer = 17
 sources/0 = SubResource("TileSetAtlasSource_l1fml")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fhea4"]
+resource_name = "White"
+texture = ExtResource("1_1olgw")
+texture_region_size = Vector2i(10, 10)
+0:0/0 = 0
+1:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+4:2/0 = 0
+3:2/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+1:3/0 = 0
+0:2/0 = 0
+1:1/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+4:0/0 = 0
+4:3/0 = 0
+4:4/0 = 0
+3:3/0 = 0
+2:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[sub_resource type="TileSet" id="TileSet_o07wb"]
+tile_size = Vector2i(10, 10)
+physics_layer_0/collision_layer = 16
+sources/0 = SubResource("TileSetAtlasSource_fhea4")
+
 [sub_resource type="Gradient" id="Gradient_c020k"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0)
@@ -97,6 +135,54 @@ height = 300
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmxta"]
 size = Vector2(10, 320)
 
+[sub_resource type="Gradient" id="Gradient_5nooi"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6woj8"]
+gradient = SubResource("Gradient_5nooi")
+width = 30
+height = 30
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o07wb"]
+size = Vector2(70, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6woj8"]
+size = Vector2(80, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nao3j"]
+size = Vector2(30, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3yos"]
+size = Vector2(40, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpmrc"]
+size = Vector2(50, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjo4t"]
+size = Vector2(10, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lk5rc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1u0n"]
+size = Vector2(40, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vg120"]
+size = Vector2(30, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgpxm"]
+size = Vector2(60, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v064v"]
+size = Vector2(270, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elmpm"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yamd7"]
+size = Vector2(10, 10)
+
 [node name="Node2D" type="Node2D" unique_id=869007451]
 
 [node name="Tilemap" type="Node2D" parent="." unique_id=1714076535]
@@ -115,7 +201,18 @@ metadata/_edit_lock_ = true
 
 [node name="LayerCollision" type="TileMapLayer" parent="Tilemap" unique_id=1013723865]
 modulate = Color(0, 0, 1, 1)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAQAAAAAAAEAAAAAAAQAAAAAAAIAAAAAAAQAAAAAAAMAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAUAAAAAAAQAAAAAAAYAAAAAAAQAAAAAAAcAAAAAAAQAAAAAAAgAAAAAAAQAAAAAAAkAAAAAAAQAAAAAAAoAAAAAAAQAAAAAAAsAAAAAAAQAAAAAAAwAAAAAAAQAAAAAAA0AAAAAAAQAAAAAAA4AAAAAAAQAAAAAAA8AAAAAAAQAAAAAABAAAAAAAAQAAAAAABEAAAAAAAQAAAAAABIAAAAAAAQAAAAAABMAAAAAAAQAAAAAABQAAAAAAAQAAAAAABUAAAAAAAQAAAAAABYAAAAAAAQAAAAAABcAAAAAAAQAAAAAABgAAAAAAAQAAAAAABkAAAAAAAQAAAAAABoAAAAAAAQAAAAAABsAAAAAAAQAAAAAABwAAAAAAAQAAAAAAB0AAAAAAAQAAAABAAAAAAAAAAQAAAABAB0AAAAAAAQAAAACAAAAAAAAAAQAAAACAB0AAAAAAAQAAAADAAAAAAAAAAQAAAADAB0AAAAAAAQAAAAEAAAAAAAAAAQAAAAEAB0AAAAAAAQAAAAFAAAAAAAAAAQAAAAFAB0AAAAAAAQAAAAGAAAAAAAAAAQAAAAGAB0AAAAAAAQAAAAHAAAAAAAAAAQAAAAHAB0AAAAAAAQAAAAIAAAAAAAAAAQAAAAIAB0AAAAAAAQAAAAJAAAAAAAAAAQAAAAJAB0AAAAAAAQAAAAKAAAAAAAAAAQAAAAKAB0AAAAAAAQAAAALAAAAAAAAAAQAAAALAB0AAAAAAAQAAAAMAAAAAAAAAAQAAAAMAB0AAAAAAAQAAAANAAAAAAAAAAQAAAANAB0AAAAAAAQAAAAOAAAAAAAAAAQAAAAOAB0AAAAAAAQAAAAPAAAAAAAAAAQAAAAPAB0AAAAAAAQAAAAQAAAAAAAAAAQAAAAQAB0AAAAAAAQAAAARAAAAAAAAAAQAAAARAB0AAAAAAAQAAAASAAAAAAAAAAQAAAASAB0AAAAAAAQAAAATAAAAAAAAAAQAAAATAB0AAAAAAAQAAAAUAAAAAAAAAAQAAAAUAB0AAAAAAAQAAAAVAAAAAAAAAAQAAAAVAB0AAAAAAAQAAAAWAAAAAAAAAAQAAAAWAB0AAAAAAAQAAAAXAAAAAAAAAAQAAAAXAB0AAAAAAAQAAAAYAAAAAAAAAAQAAAAYAB0AAAAAAAQAAAAZAAAAAAAAAAQAAAAZAB0AAAAAAAQAAAAaAAAAAAAAAAQAAAAaAB0AAAAAAAQAAAAbAAAAAAAAAAQAAAAbAB0AAAAAAAQAAAAcAAAAAAAAAAQAAAAcAB0AAAAAAAQAAAA=")
 tile_set = SubResource("TileSet_ysps8")
+
+[node name="LayerCollision3" type="TileMapLayer" parent="Tilemap" unique_id=1022366699]
+modulate = Color(1, 0, 0, 1)
+tile_map_data = PackedByteArray("AAAEABoAAAAEAAAAAAAEABsAAAAEAAAAAAAEABwAAAAEAAAAAAAFABoAAAAEAAAAAAAFABsAAAAEAAAAAAAFABwAAAAEAAAAAAAGABoAAAAEAAAAAAAGABsAAAAEAAAAAAAGABwAAAAEAAAAAAAHABoAAAAEAAAAAAAHABsAAAAEAAAAAAAHABwAAAAEAAAAAAAIABoAAAAEAAAAAAAIABsAAAAEAAAAAAAIABwAAAAEAAAAAAAJABoAAAAEAAAAAAAJABsAAAAEAAAAAAAJABwAAAAEAAAAAAAKABoAAAAEAAAAAAAKABsAAAAEAAAAAAAKABwAAAAEAAAAAAALABoAAAAEAAAAAAALABsAAAAEAAAAAAALABwAAAAEAAAAAAAMABoAAAAEAAAAAAAMABsAAAAEAAAAAAAMABwAAAAEAAAAAAANABoAAAAEAAAAAAANABsAAAAEAAAAAAANABwAAAAEAAAAAAAOABoAAAAEAAAAAAAOABsAAAAEAAAAAAAOABwAAAAEAAAAAAAPABoAAAAEAAAAAAAPABsAAAAEAAAAAAAPABwAAAAEAAAAAAAQABoAAAAEAAAAAAAQABsAAAAEAAAAAAAQABwAAAAEAAAAAAARABoAAAAEAAAAAAARABsAAAAEAAAAAAARABwAAAAEAAAAAAASABoAAAAEAAAAAAASABsAAAAEAAAAAAASABwAAAAEAAAAAAATABoAAAAEAAAAAAATABsAAAAEAAAAAAATABwAAAAEAAAAAAAUABoAAAAEAAAAAAAUABsAAAAEAAAAAAAUABwAAAAEAAAAAAAVABoAAAAEAAAAAAAVABsAAAAEAAAAAAAVABwAAAAEAAAAAAAWABoAAAAEAAAAAAAWABsAAAAEAAAAAAAWABwAAAAEAAAAAAAXABoAAAAEAAAAAAAXABsAAAAEAAAAAAAXABwAAAAEAAAAAAAYABoAAAAEAAAAAAAYABsAAAAEAAAAAAAYABwAAAAEAAAAAAAZABoAAAAEAAAAAAAZABsAAAAEAAAAAAAZABwAAAAEAAAAAAAaABoAAAAEAAAAAAAaABsAAAAEAAAAAAAaABwAAAAEAAAAAAAbABoAAAAEAAAAAAAbABsAAAAEAAAAAAAbABwAAAAEAAAAAAAbABcAAAAEAAAAAAAbABgAAAAEAAAAAAAVABcAAAAEAAAAAAAVABgAAAAEAAAAAAAWABcAAAAEAAAAAAAWABgAAAAEAAAAAAAXABcAAAAEAAAAAAAXABgAAAAEAAAAAAAYABcAAAAEAAAAAAAYABgAAAAEAAAAAAAZABcAAAAEAAAAAAAZABgAAAAEAAAAAAAQABcAAAAEAAAAAAAQABgAAAAEAAAAAAARABcAAAAEAAAAAAARABgAAAAEAAAAAAASABcAAAAEAAAAAAASABgAAAAEAAAAAAATABcAAAAEAAAAAAATABgAAAAEAAAAAAAMABcAAAAEAAAAAAAMABgAAAAEAAAAAAANABcAAAAEAAAAAAANABgAAAAEAAAAAAAOABcAAAAEAAAAAAAOABgAAAAEAAAAAAAEABcAAAAEAAAAAAAEABgAAAAEAAAAAAAFABcAAAAEAAAAAAAFABgAAAAEAAAAAAAGABcAAAAEAAAAAAAGABgAAAAEAAAAAAAHABcAAAAEAAAAAAAHABgAAAAEAAAAAAAIABcAAAAEAAAAAAAIABgAAAAEAAAAAAAJABcAAAAEAAAAAAAJABgAAAAEAAAAAAAKABcAAAAEAAAAAAAKABgAAAAEAAAAAAAEABQAAAAEAAAAAAAEABUAAAAEAAAAAAAFABQAAAAEAAAAAAAFABUAAAAEAAAAAAAGABQAAAAEAAAAAAAGABUAAAAEAAAAAAAIABQAAAAEAAAAAAAIABUAAAAEAAAAAAAJABQAAAAEAAAAAAAJABUAAAAEAAAAAAAKABQAAAAEAAAAAAAKABUAAAAEAAAAAAAMABQAAAAEAAAAAAAMABUAAAAEAAAAAAANABQAAAAEAAAAAAANABUAAAAEAAAAAAAOABQAAAAEAAAAAAAOABUAAAAEAAAAAAAPABQAAAAEAAAAAAAPABUAAAAEAAAAAAAQABQAAAAEAAAAAAAQABUAAAAEAAAAAAARABQAAAAEAAAAAAARABUAAAAEAAAAAAASABQAAAAEAAAAAAASABUAAAAEAAAAAAATABQAAAAEAAAAAAATABUAAAAEAAAAAAAVABQAAAAEAAAAAAAVABUAAAAEAAAAAAAWABQAAAAEAAAAAAAWABUAAAAEAAAAAAAXABQAAAAEAAAAAAAXABUAAAAEAAAAAAAYABQAAAAEAAAAAAAYABUAAAAEAAAAAAAZABQAAAAEAAAAAAAZABUAAAAEAAAAAAAaABQAAAAEAAAAAAAaABUAAAAEAAAAAAAbABQAAAAEAAAAAAAbABUAAAAEAAAAAAAVABEAAAAEAAAAAAAVABIAAAAEAAAAAAAWABEAAAAEAAAAAAAWABIAAAAEAAAAAAAXABEAAAAEAAAAAAAXABIAAAAEAAAAAAAYABEAAAAEAAAAAAAYABIAAAAEAAAAAAAZABEAAAAEAAAAAAAZABIAAAAEAAAAAAAaABEAAAAEAAAAAAAaABIAAAAEAAAAAAAbABEAAAAEAAAAAAAbABIAAAAEAAAAAAAYAA4AAAAEAAAAAAAYAA8AAAAEAAAAAAAZAA4AAAAEAAAAAAAZAA8AAAAEAAAAAAAaAA4AAAAEAAAAAAAaAA8AAAAEAAAAAAAbAA4AAAAEAAAAAAAbAA8AAAAEAAAAAAAVAAsAAAAEAAAAAAAVAAwAAAAEAAAAAAAWAAsAAAAEAAAAAAAWAAwAAAAEAAAAAAAXAAsAAAAEAAAAAAAXAAwAAAAEAAAAAAAYAAsAAAAEAAAAAAAYAAwAAAAEAAAAAAAZAAsAAAAEAAAAAAAZAAwAAAAEAAAAAAAaAAsAAAAEAAAAAAAaAAwAAAAEAAAAAAAbAAsAAAAEAAAAAAAbAAwAAAAEAAAAAAAVAAgAAAAEAAAAAAAVAAkAAAAEAAAAAAAWAAgAAAAEAAAAAAAWAAkAAAAEAAAAAAAXAAgAAAAEAAAAAAAXAAkAAAAEAAAAAAAYAAgAAAAEAAAAAAAYAAkAAAAEAAAAAAAZAAgAAAAEAAAAAAAZAAkAAAAEAAAAAAAaAAgAAAAEAAAAAAAaAAkAAAAEAAAAAAAbAAgAAAAEAAAAAAAbAAkAAAAEAAAAAAAaAAUAAAAEAAAAAAAaAAYAAAAEAAAAAAAbAAUAAAAEAAAAAAAbAAYAAAAEAAAAAAAEAAEAAAAEAAAAAAAEAAIAAAAEAAAAAAAEAAMAAAAEAAAAAAAFAAEAAAAEAAAAAAAFAAIAAAAEAAAAAAAFAAMAAAAEAAAAAAAGAAEAAAAEAAAAAAAGAAIAAAAEAAAAAAAGAAMAAAAEAAAAAAAHAAEAAAAEAAAAAAAHAAIAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAEAAAAEAAAAAAAIAAIAAAAEAAAAAAAIAAMAAAAEAAAAAAAJAAEAAAAEAAAAAAAJAAIAAAAEAAAAAAAJAAMAAAAEAAAAAAAKAAEAAAAEAAAAAAAKAAIAAAAEAAAAAAAKAAMAAAAEAAAAAAALAAEAAAAEAAAAAAALAAIAAAAEAAAAAAALAAMAAAAEAAAAAAAMAAEAAAAEAAAAAAAMAAIAAAAEAAAAAAAMAAMAAAAEAAAAAAANAAEAAAAEAAAAAAANAAIAAAAEAAAAAAANAAMAAAAEAAAAAAAOAAEAAAAEAAAAAAAOAAIAAAAEAAAAAAAOAAMAAAAEAAAAAAAPAAEAAAAEAAAAAAAPAAIAAAAEAAAAAAAPAAMAAAAEAAAAAAAQAAEAAAAEAAAAAAAQAAIAAAAEAAAAAAAQAAMAAAAEAAAAAAARAAEAAAAEAAAAAAARAAIAAAAEAAAAAAARAAMAAAAEAAAAAAASAAEAAAAEAAAAAAASAAIAAAAEAAAAAAASAAMAAAAEAAAAAAATAAEAAAAEAAAAAAATAAIAAAAEAAAAAAATAAMAAAAEAAAAAAAUAAEAAAAEAAAAAAAUAAIAAAAEAAAAAAAUAAMAAAAEAAAAAAAVAAEAAAAEAAAAAAAVAAIAAAAEAAAAAAAVAAMAAAAEAAAAAAAWAAEAAAAEAAAAAAAWAAIAAAAEAAAAAAAWAAMAAAAEAAAAAAAXAAEAAAAEAAAAAAAXAAIAAAAEAAAAAAAXAAMAAAAEAAAAAAAYAAEAAAAEAAAAAAAYAAIAAAAEAAAAAAAYAAMAAAAEAAAAAAAZAAEAAAAEAAAAAAAZAAIAAAAEAAAAAAAZAAMAAAAEAAAAAAAaAAEAAAAEAAAAAAAaAAIAAAAEAAAAAAAaAAMAAAAEAAAAAAAbAAEAAAAEAAAAAAAbAAIAAAAEAAAAAAAbAAMAAAAEAAAAAAAVAAUAAAAEAAAAAAAVAAYAAAAEAAAAAAAWAAUAAAAEAAAAAAAWAAYAAAAEAAAAAAAXAAUAAAAEAAAAAAAXAAYAAAAEAAAAAAAYAAUAAAAEAAAAAAAYAAYAAAAEAAAAAAAVAA4AAAAEAAAAAAAVAA8AAAAEAAAAAAAWAA4AAAAEAAAAAAAWAA8AAAAEAAAAAAATAAsAAAAEAAAAAAATAAwAAAAEAAAAAAAMAAgAAAAEAAAAAAAMAAkAAAAEAAAAAAANAAgAAAAEAAAAAAANAAkAAAAEAAAAAAAOAAgAAAAEAAAAAAAOAAkAAAAEAAAAAAAPAAgAAAAEAAAAAAAPAAkAAAAEAAAAAAAQAAgAAAAEAAAAAAAQAAkAAAAEAAAAAAARAAgAAAAEAAAAAAARAAkAAAAEAAAAAAASAAgAAAAEAAAAAAASAAkAAAAEAAAAAAATAAgAAAAEAAAAAAATAAkAAAAEAAAAAAAMAAUAAAAEAAAAAAAMAAYAAAAEAAAAAAANAAUAAAAEAAAAAAANAAYAAAAEAAAAAAAOAAUAAAAEAAAAAAAOAAYAAAAEAAAAAAAPAAUAAAAEAAAAAAAPAAYAAAAEAAAAAAAQAAUAAAAEAAAAAAAQAAYAAAAEAAAAAAARAAUAAAAEAAAAAAARAAYAAAAEAAAAAAASAAUAAAAEAAAAAAASAAYAAAAEAAAAAAATAAUAAAAEAAAAAAATAAYAAAAEAAAAAAAEAAUAAAAEAAAAAAAEAAYAAAAEAAAAAAAFAAUAAAAEAAAAAAAFAAYAAAAEAAAAAAAGAAUAAAAEAAAAAAAGAAYAAAAEAAAAAAAHAAUAAAAEAAAAAAAHAAYAAAAEAAAAAAAIAAUAAAAEAAAAAAAIAAYAAAAEAAAAAAAJAAUAAAAEAAAAAAAJAAYAAAAEAAAAAAAKAAUAAAAEAAAAAAAKAAYAAAAEAAAAAAAHAAgAAAAEAAAAAAAHAAkAAAAEAAAAAAAIAAgAAAAEAAAAAAAIAAkAAAAEAAAAAAAJAAgAAAAEAAAAAAAJAAkAAAAEAAAAAAAKAAgAAAAEAAAAAAAKAAkAAAAEAAAAAAAEAAgAAAAEAAAAAAAEAAkAAAAEAAAAAAAFAAgAAAAEAAAAAAAFAAkAAAAEAAAAAAAEAAsAAAAEAAAAAAAEAAwAAAAEAAAAAAAFAAsAAAAEAAAAAAAFAAwAAAAEAAAAAAAGAAsAAAAEAAAAAAAGAAwAAAAEAAAAAAAHAAsAAAAEAAAAAAAHAAwAAAAEAAAAAAAIAAsAAAAEAAAAAAAIAAwAAAAEAAAAAAAJAAsAAAAEAAAAAAAJAAwAAAAEAAAAAAAKAAsAAAAEAAAAAAAKAAwAAAAEAAAAAAAEAA4AAAAEAAAAAAAEAA8AAAAEAAAAAAAFAA4AAAAEAAAAAAAFAA8AAAAEAAAAAAAGAA4AAAAEAAAAAAAGAA8AAAAEAAAAAAAHAA4AAAAEAAAAAAAHAA8AAAAEAAAAAAAIAA4AAAAEAAAAAAAIAA8AAAAEAAAAAAAJAA4AAAAEAAAAAAAJAA8AAAAEAAAAAAAKAA4AAAAEAAAAAAAKAA8AAAAEAAAAAAAEABEAAAAEAAAAAAAEABIAAAAEAAAAAAAFABEAAAAEAAAAAAAFABIAAAAEAAAAAAAGABEAAAAEAAAAAAAGABIAAAAEAAAAAAAHABEAAAAEAAAAAAAHABIAAAAEAAAAAAAIABEAAAAEAAAAAAAIABIAAAAEAAAAAAAJABEAAAAEAAAAAAAJABIAAAAEAAAAAAAKABEAAAAEAAAAAAAKABIAAAAEAAAAAAAMABEAAAAEAAAAAAAMABIAAAAEAAAAAAANABEAAAAEAAAAAAANABIAAAAEAAAAAAAOABEAAAAEAAAAAAAOABIAAAAEAAAAAAAPABEAAAAEAAAAAAAPABIAAAAEAAAAAAAQABEAAAAEAAAAAAAQABIAAAAEAAAAAAARABEAAAAEAAAAAAARABIAAAAEAAAAAAASABEAAAAEAAAAAAASABIAAAAEAAAAAAATABEAAAAEAAAAAAATABIAAAAEAAAAAAAMAA4AAAAEAAAAAAAMAA8AAAAEAAAAAAANAA4AAAAEAAAAAAANAA8AAAAEAAAAAAAOAA4AAAAEAAAAAAAOAA8AAAAEAAAAAAAPAA4AAAAEAAAAAAAPAA8AAAAEAAAAAAAQAA4AAAAEAAAAAAAQAA8AAAAEAAAAAAARAA4AAAAEAAAAAAARAA8AAAAEAAAAAAASAA4AAAAEAAAAAAASAA8AAAAEAAAAAAATAA4AAAAEAAAAAAATAA8AAAAEAAAAAAAMAAsAAAAEAAAAAAAMAAwAAAAEAAAAAAANAAsAAAAEAAAAAAANAAwAAAAEAAAAAAAOAAsAAAAEAAAAAAAOAAwAAAAEAAAAAAAPAAsAAAAEAAAAAAAPAAwAAAAEAAAAAAAQAAsAAAAEAAAAAAAQAAwAAAAEAAAAAAARAAsAAAAEAAAAAAARAAwAAAAEAAAAAAABAAEAAAAEAAAAAAABAAIAAAAEAAAAAAABAAMAAAAEAAAAAAABAAQAAAAEAAAAAAABAAUAAAAEAAAAAAABAAYAAAAEAAAAAAABAAcAAAAEAAAAAAABAAgAAAAEAAAAAAABAAkAAAAEAAAAAAABAAoAAAAEAAAAAAABAAsAAAAEAAAAAAABAAwAAAAEAAAAAAABAA0AAAAEAAAAAAABAA4AAAAEAAAAAAABAA8AAAAEAAAAAAABABAAAAAEAAAAAAABABEAAAAEAAAAAAABABIAAAAEAAAAAAABABMAAAAEAAAAAAABABQAAAAEAAAAAAABABUAAAAEAAAAAAABABYAAAAEAAAAAAABABcAAAAEAAAAAAABABgAAAAEAAAAAAABABkAAAAEAAAAAAABABoAAAAEAAAAAAABABsAAAAEAAAAAAABABwAAAAEAAAAAAACAAEAAAAEAAAAAAACAAIAAAAEAAAAAAACAAMAAAAEAAAAAAACAAQAAAAEAAAAAAACAAUAAAAEAAAAAAACAAYAAAAEAAAAAAACAAcAAAAEAAAAAAACAAgAAAAEAAAAAAACAAkAAAAEAAAAAAACAAoAAAAEAAAAAAACAAsAAAAEAAAAAAACAAwAAAAEAAAAAAACAA0AAAAEAAAAAAACAA4AAAAEAAAAAAACAA8AAAAEAAAAAAACABAAAAAEAAAAAAACABEAAAAEAAAAAAACABIAAAAEAAAAAAACABMAAAAEAAAAAAACABQAAAAEAAAAAAACABUAAAAEAAAAAAACABYAAAAEAAAAAAACABcAAAAEAAAAAAACABgAAAAEAAAAAAACABkAAAAEAAAAAAACABoAAAAEAAAAAAACABsAAAAEAAAAAAACABwAAAAEAAAAAAADABoAAAAEAAAAAAADABsAAAAEAAAAAAADABwAAAAEAAAAAAADAAEAAAAEAAAAAAADAAIAAAAEAAAAAAADAAMAAAAEAAAAAAA=")
+tile_set = SubResource("TileSet_ysps8")
+
+[node name="LayerCollision2" type="TileMapLayer" parent="Tilemap" unique_id=1703775957]
+visible = false
+tile_map_data = PackedByteArray("AAAcAAEAAAAAAAQAAAAcAAIAAAAAAAQAAAAcAAMAAAAAAAQAAAAcAAQAAAAAAAQAAAAcAAUAAAAAAAQAAAAcAAYAAAAAAAQAAAAcAAcAAAAAAAQAAAAcAAgAAAAAAAQAAAAcAAkAAAAAAAQAAAAcAAoAAAAAAAQAAAAcAAsAAAAAAAQAAAAcAAwAAAAAAAQAAAAcAA0AAAAAAAQAAAAcAA4AAAAAAAQAAAAcAA8AAAAAAAQAAAAcABAAAAAAAAQAAAAcABEAAAAAAAQAAAAcABIAAAAAAAQAAAAcABMAAAAAAAQAAAAcABQAAAAAAAQAAAAcABUAAAAAAAQAAAAcABYAAAAAAAQAAAAcABcAAAAAAAQAAAAcABgAAAAAAAQAAAAcABkAAAAAAAQAAAAcABoAAAAAAAQAAAAcABsAAAAAAAQAAAAcABwAAAAAAAQAAAABAAEAAAAAAAQAAAABAAIAAAAAAAQAAAABAAMAAAAAAAQAAAABAAQAAAAAAAQAAAABAAUAAAAAAAQAAAABAAYAAAAAAAQAAAABAAcAAAAAAAQAAAABAAgAAAAAAAQAAAABAAkAAAAAAAQAAAABAAoAAAAAAAQAAAABAAsAAAAAAAQAAAABAAwAAAAAAAQAAAABAA0AAAAAAAQAAAABAA4AAAAAAAQAAAABAA8AAAAAAAQAAAABABAAAAAAAAQAAAABABEAAAAAAAQAAAABABIAAAAAAAQAAAABABMAAAAAAAQAAAABABQAAAAAAAQAAAABABUAAAAAAAQAAAABABYAAAAAAAQAAAABABcAAAAAAAQAAAABABgAAAAAAAQAAAABABkAAAAAAAQAAAABABoAAAAAAAQAAAABABsAAAAAAAQAAAABABwAAAAAAAQAAAACAAEAAAAAAAQAAAACAAIAAAAAAAQAAAACAAMAAAAAAAQAAAACAAQAAAAAAAQAAAACAAUAAAAAAAQAAAACAAYAAAAAAAQAAAACAAcAAAAAAAQAAAACAAgAAAAAAAQAAAACAAkAAAAAAAQAAAACAAoAAAAAAAQAAAACAAsAAAAAAAQAAAACAAwAAAAAAAQAAAACAA0AAAAAAAQAAAACAA4AAAAAAAQAAAACAA8AAAAAAAQAAAACABAAAAAAAAQAAAACABEAAAAAAAQAAAACABIAAAAAAAQAAAACABMAAAAAAAQAAAACABQAAAAAAAQAAAACABUAAAAAAAQAAAACABYAAAAAAAQAAAACABcAAAAAAAQAAAACABgAAAAAAAQAAAACABkAAAAAAAQAAAACABoAAAAAAAQAAAACABsAAAAAAAQAAAACABwAAAAAAAQAAAADAAEAAAAAAAQAAAADAAIAAAAAAAQAAAADAAMAAAAAAAQAAAAEAAEAAAAAAAQAAAAEAAIAAAAAAAQAAAAEAAMAAAAAAAQAAAAFAAEAAAAAAAQAAAAFAAIAAAAAAAQAAAAFAAMAAAAAAAQAAAAGAAEAAAAAAAQAAAAGAAIAAAAAAAQAAAAGAAMAAAAAAAQAAAAHAAEAAAAAAAQAAAAHAAIAAAAAAAQAAAAHAAMAAAAAAAQAAAAIAAEAAAAAAAQAAAAIAAIAAAAAAAQAAAAIAAMAAAAAAAQAAAAJAAEAAAAAAAQAAAAJAAIAAAAAAAQAAAAJAAMAAAAAAAQAAAAKAAEAAAAAAAQAAAAKAAIAAAAAAAQAAAAKAAMAAAAAAAQAAAALAAEAAAAAAAQAAAALAAIAAAAAAAQAAAALAAMAAAAAAAQAAAAMAAEAAAAAAAQAAAAMAAIAAAAAAAQAAAAMAAMAAAAAAAQAAAANAAEAAAAAAAQAAAANAAIAAAAAAAQAAAANAAMAAAAAAAQAAAAOAAEAAAAAAAQAAAAOAAIAAAAAAAQAAAAOAAMAAAAAAAQAAAAPAAEAAAAAAAQAAAAPAAIAAAAAAAQAAAAPAAMAAAAAAAQAAAAQAAEAAAAAAAQAAAAQAAIAAAAAAAQAAAAQAAMAAAAAAAQAAAARAAEAAAAAAAQAAAARAAIAAAAAAAQAAAARAAMAAAAAAAQAAAASAAEAAAAAAAQAAAASAAIAAAAAAAQAAAASAAMAAAAAAAQAAAATAAEAAAAAAAQAAAATAAIAAAAAAAQAAAATAAMAAAAAAAQAAAAUAAEAAAAAAAQAAAAUAAIAAAAAAAQAAAAUAAMAAAAAAAQAAAAVAAEAAAAAAAQAAAAVAAIAAAAAAAQAAAAVAAMAAAAAAAQAAAAWAAEAAAAAAAQAAAAWAAIAAAAAAAQAAAAWAAMAAAAAAAQAAAAXAAEAAAAAAAQAAAAXAAIAAAAAAAQAAAAXAAMAAAAAAAQAAAAYAAEAAAAAAAQAAAAYAAIAAAAAAAQAAAAYAAMAAAAAAAQAAAAZAAEAAAAAAAQAAAAZAAIAAAAAAAQAAAAZAAMAAAAAAAQAAAAaAAEAAAAAAAQAAAAaAAIAAAAAAAQAAAAaAAMAAAAAAAQAAAAbAAEAAAAAAAQAAAAbAAIAAAAAAAQAAAAbAAMAAAAAAAQAAAADABoAAAAAAAQAAAADABsAAAAAAAQAAAADABwAAAAAAAQAAAAEABoAAAAAAAQAAAAEABsAAAAAAAQAAAAEABwAAAAAAAQAAAAFABoAAAAAAAQAAAAFABsAAAAAAAQAAAAFABwAAAAAAAQAAAAGABoAAAAAAAQAAAAGABsAAAAAAAQAAAAGABwAAAAAAAQAAAAHABoAAAAAAAQAAAAHABsAAAAAAAQAAAAHABwAAAAAAAQAAAAIABoAAAAAAAQAAAAIABsAAAAAAAQAAAAIABwAAAAAAAQAAAAJABoAAAAAAAQAAAAJABsAAAAAAAQAAAAJABwAAAAAAAQAAAAKABoAAAAAAAQAAAAKABsAAAAAAAQAAAAKABwAAAAAAAQAAAALABoAAAAAAAQAAAALABsAAAAAAAQAAAALABwAAAAAAAQAAAAMABoAAAAAAAQAAAAMABsAAAAAAAQAAAAMABwAAAAAAAQAAAANABoAAAAAAAQAAAANABsAAAAAAAQAAAANABwAAAAAAAQAAAAOABoAAAAAAAQAAAAOABsAAAAAAAQAAAAOABwAAAAAAAQAAAAPABoAAAAAAAQAAAAPABsAAAAAAAQAAAAPABwAAAAAAAQAAAAQABoAAAAAAAQAAAAQABsAAAAAAAQAAAAQABwAAAAAAAQAAAARABoAAAAAAAQAAAARABsAAAAAAAQAAAARABwAAAAAAAQAAAASABoAAAAAAAQAAAASABsAAAAAAAQAAAASABwAAAAAAAQAAAATABoAAAAAAAQAAAATABsAAAAAAAQAAAATABwAAAAAAAQAAAAUABoAAAAAAAQAAAAUABsAAAAAAAQAAAAUABwAAAAAAAQAAAAVABoAAAAAAAQAAAAVABsAAAAAAAQAAAAVABwAAAAAAAQAAAAWABoAAAAAAAQAAAAWABsAAAAAAAQAAAAWABwAAAAAAAQAAAAXABoAAAAAAAQAAAAXABsAAAAAAAQAAAAXABwAAAAAAAQAAAAYABoAAAAAAAQAAAAYABsAAAAAAAQAAAAYABwAAAAAAAQAAAAZABoAAAAAAAQAAAAZABsAAAAAAAQAAAAZABwAAAAAAAQAAAAaABoAAAAAAAQAAAAaABsAAAAAAAQAAAAaABwAAAAAAAQAAAAbABoAAAAAAAQAAAAbABsAAAAAAAQAAAAbABwAAAAAAAQAAAA=")
+tile_set = SubResource("TileSet_o07wb")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1147526295]
 energy = 0.25
@@ -124,13 +221,13 @@ energy = 0.25
 color = Color(0.552956, 0.552956, 0.552955, 1)
 
 [node name="CharacterBody2D" parent="." unique_id=1045008977 instance=ExtResource("2_cdbh6")]
-position = Vector2(25, 35)
+position = Vector2(35, 145)
 
 [node name="WinArea2D" type="Area2D" parent="." unique_id=1384393795]
 position = Vector2(295, 140)
 collision_layer = 2
 script = ExtResource("3_q7l8j")
-scene_to_changue = 5
+scene_to_changue = 9
 
 [node name="Sprite2D2" type="Sprite2D" parent="WinArea2D" unique_id=681259425]
 modulate = Color(0, 1, 0, 1)
@@ -151,9 +248,831 @@ shape = SubResource("RectangleShape2D_mmxta")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1775962103]
 position = Vector2(150, 150)
 
-[node name="ShakerComponent2D" type="Node2D" parent="Camera2D" unique_id=1645913279]
-script = ExtResource("4_6fvmi")
-metadata/_custom_type_script = "uid://cqn0rrxwerl2u"
+[node name="BoxArea2D" parent="." unique_id=604764735 instance=ExtResource("5_q7l8j")]
+position = Vector2(95, 135)
+
+[node name="BoxArea2D3" parent="." unique_id=1161235743 instance=ExtResource("5_q7l8j")]
+position = Vector2(135, 75)
+
+[node name="BoxArea2D4" parent="." unique_id=605572773 instance=ExtResource("5_q7l8j")]
+position = Vector2(195, 195)
+
+[node name="BoxArea2D5" parent="." unique_id=968260999 instance=ExtResource("5_q7l8j")]
+position = Vector2(55, 225)
+
+[node name="BoxArea2D6" parent="." unique_id=1739300794 instance=ExtResource("5_q7l8j")]
+position = Vector2(175, 225)
+
+[node name="BoxArea2D7" parent="." unique_id=1816595864 instance=ExtResource("5_q7l8j")]
+position = Vector2(205, 255)
+
+[node name="BoxArea2D8" parent="." unique_id=632788598 instance=ExtResource("5_q7l8j")]
+position = Vector2(115, 255)
+
+[node name="BoxArea2D9" parent="." unique_id=1574862432 instance=ExtResource("5_q7l8j")]
+position = Vector2(165, 45)
+
+[node name="BoxArea2D10" parent="." unique_id=134661670 instance=ExtResource("5_q7l8j")]
+position = Vector2(85, 45)
+
+[node name="BoxArea2D11" parent="." unique_id=52421266 instance=ExtResource("5_q7l8j")]
+position = Vector2(205, 135)
+
+[node name="BoxArea2D12" parent="." unique_id=188282314 instance=ExtResource("5_q7l8j")]
+position = Vector2(235, 165)
+
+[node name="BoxArea2D13" parent="." unique_id=723078044 instance=ExtResource("5_q7l8j")]
+position = Vector2(85, 165)
+
+[node name="BoxArea2D14" parent="." unique_id=909349943 instance=ExtResource("5_q7l8j")]
+position = Vector2(165, 255)
+
+[node name="BoxArea2D2" parent="." unique_id=896269276 instance=ExtResource("5_q7l8j")]
+position = Vector2(75, 195)
+
+[node name="Node" type="Node" parent="." unique_id=1169967086]
+
+[node name="PointLight2D2" type="PointLight2D" parent="Node" unique_id=278936844]
+position = Vector2(50, 90)
+scale = Vector2(2, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Node" unique_id=1234749067]
+position = Vector2(220, 150)
+scale = Vector2(2, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Node" unique_id=1867001231]
+position = Vector2(270, 60)
+scale = Vector2(2, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Node" unique_id=1414901383]
+position = Vector2(75, 60)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D7" type="PointLight2D" parent="Node" unique_id=165044125]
+position = Vector2(75, 120)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D8" type="PointLight2D" parent="Node" unique_id=819567104]
+position = Vector2(75, 150)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D9" type="PointLight2D" parent="Node" unique_id=422829739]
+position = Vector2(75, 180)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D10" type="PointLight2D" parent="Node" unique_id=482194696]
+position = Vector2(75, 240)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D11" type="PointLight2D" parent="Node" unique_id=1911940225]
+position = Vector2(55, 210)
+scale = Vector2(2.5, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D12" type="PointLight2D" parent="Node" unique_id=1776243865]
+position = Vector2(95, 210)
+scale = Vector2(2.5, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D13" type="PointLight2D" parent="Node" unique_id=893548037]
+position = Vector2(135, 240)
+scale = Vector2(2.5, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D14" type="PointLight2D" parent="Node" unique_id=1994432650]
+position = Vector2(180, 240)
+scale = Vector2(2.65, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D15" type="PointLight2D" parent="Node" unique_id=1801356183]
+position = Vector2(235, 240)
+scale = Vector2(2.8, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D16" type="PointLight2D" parent="Node" unique_id=1368482054]
+position = Vector2(275, 240)
+scale = Vector2(1, 1.5)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D17" type="PointLight2D" parent="Node" unique_id=1457815237]
+position = Vector2(160, 210)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D18" type="PointLight2D" parent="Node" unique_id=655382176]
+position = Vector2(160, 180)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D19" type="PointLight2D" parent="Node" unique_id=586245089]
+position = Vector2(160, 150)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D20" type="PointLight2D" parent="Node" unique_id=33916392]
+position = Vector2(160, 90)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D21" type="PointLight2D" parent="Node" unique_id=1440828704]
+position = Vector2(160, 60)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D22" type="PointLight2D" parent="Node" unique_id=770374994]
+position = Vector2(245, 90)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D23" type="PointLight2D" parent="Node" unique_id=438747875]
+position = Vector2(245, 120)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D24" type="PointLight2D" parent="Node" unique_id=1157960758]
+position = Vector2(245, 180)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D25" type="PointLight2D" parent="Node" unique_id=432232441]
+position = Vector2(245, 210)
+scale = Vector2(3, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D26" type="PointLight2D" parent="Node" unique_id=1772084105]
+position = Vector2(260, 150)
+scale = Vector2(2.5, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Node" unique_id=1859869154]
+position = Vector2(270, 60)
+scale = Vector2(2, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.16
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="DieDirectionalMovementArea18" type="Area2D" parent="." unique_id=651813203]
+position = Vector2(165, 85)
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("6_fhea4")
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+movement_distance = Vector2(0, 0)
+movement_turn = 8989
+metadata/_custom_type_script = "uid://ccwaenps1olh2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=137769851]
+position = Vector2(-90, -25)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1837206550]
+position = Vector2(-90, 35)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1701457228]
+position = Vector2(-90, 65)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=340178077]
+position = Vector2(-90, 95)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=2051461580]
+position = Vector2(-90, 155)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1982122266]
+position = Vector2(-5, 125)
+shape = SubResource("RectangleShape2D_6woj8")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=215992832]
+position = Vector2(-5, 95)
+shape = SubResource("RectangleShape2D_6woj8")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=2140979686]
+position = Vector2(-5, 65)
+shape = SubResource("RectangleShape2D_6woj8")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=978081145]
+position = Vector2(-5, 5)
+shape = SubResource("RectangleShape2D_6woj8")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1222827011]
+position = Vector2(-5, -25)
+shape = SubResource("RectangleShape2D_6woj8")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1432100958]
+position = Vector2(-30, 155)
+shape = SubResource("RectangleShape2D_nao3j")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=473572844]
+position = Vector2(15, 155)
+shape = SubResource("RectangleShape2D_m3yos")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1608793840]
+position = Vector2(70, 155)
+shape = SubResource("RectangleShape2D_rpmrc")
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1111638381]
+position = Vector2(110, 155)
+shape = SubResource("RectangleShape2D_fjo4t")
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1304991829]
+position = Vector2(30, 35)
+shape = SubResource("RectangleShape2D_fjo4t")
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=864177983]
+position = Vector2(-115, 5)
+shape = SubResource("RectangleShape2D_lk5rc")
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=568108497]
+position = Vector2(105, -25)
+shape = SubResource("RectangleShape2D_lk5rc")
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1470617877]
+position = Vector2(55, 65)
+shape = SubResource("RectangleShape2D_lk5rc")
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1353463551]
+position = Vector2(65, -25)
+shape = SubResource("RectangleShape2D_q1u0n")
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=928338637]
+position = Vector2(95, 65)
+shape = SubResource("RectangleShape2D_q1u0n")
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=548812803]
+position = Vector2(-75, 5)
+shape = SubResource("RectangleShape2D_q1u0n")
+
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1689163785]
+position = Vector2(-110, 125)
+shape = SubResource("RectangleShape2D_vg120")
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1277400779]
+position = Vector2(-70, 125)
+shape = SubResource("RectangleShape2D_vg120")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1690404607]
+position = Vector2(80, 95)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=762768034]
+position = Vector2(80, 125)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1398445476]
+position = Vector2(80, 35)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1266702174]
+position = Vector2(80, 5)
+shape = SubResource("RectangleShape2D_o07wb")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1327812573]
+position = Vector2(-15, 35)
+shape = SubResource("RectangleShape2D_rgpxm")
+
+[node name="CollisionShape2D29" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=335526898]
+position = Vector2(-20, 190)
+shape = SubResource("RectangleShape2D_v064v")
+
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=11236439]
+position = Vector2(-150, 56)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_v064v")
+
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="DieDirectionalMovementArea18" unique_id=1840166140]
+position = Vector2(-20, -60)
+shape = SubResource("RectangleShape2D_v064v")
+
+[node name="NearArea" type="Area2D" parent="DieDirectionalMovementArea18" unique_id=275284376]
+position = Vector2(0, 20)
+collision_mask = 17
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DieDirectionalMovementArea18/NearArea" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="Directoinal" type="Node" parent="." unique_id=1876021972]
+
+[node name="DieDirectionalMovementArea10" parent="Directoinal" unique_id=315334475 instance=ExtResource("6_6fvmi")]
+position = Vector2(275, 75)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea10" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea10" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea10/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea10" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea10/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea18" parent="Directoinal" unique_id=198374835 instance=ExtResource("6_6fvmi")]
+position = Vector2(205, 45)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(0, -1)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea18" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea18" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea18/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea18" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea18/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea20" parent="Directoinal" unique_id=231812199 instance=ExtResource("6_6fvmi")]
+position = Vector2(205, 105)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(0, -1)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea20" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea20" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea20/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea20" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea20/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea21" parent="Directoinal" unique_id=323036334 instance=ExtResource("6_6fvmi")]
+position = Vector2(205, 165)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(0, -1)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea21" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea21" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea21/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea21" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea21/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea22" parent="Directoinal" unique_id=138382398 instance=ExtResource("6_6fvmi")]
+position = Vector2(115, 165)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(0, -1)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea22" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea22" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea22/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea22" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea22/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea23" parent="Directoinal" unique_id=843861510 instance=ExtResource("6_6fvmi")]
+position = Vector2(115, 105)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(0, -1)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea23" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea23" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea23/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea23" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea23/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea19" parent="Directoinal" unique_id=259375602 instance=ExtResource("6_6fvmi")]
+position = Vector2(115, 45)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(0, -1)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea19" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea19" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea19/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea19" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea19/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea11" parent="Directoinal" unique_id=48674018 instance=ExtResource("6_6fvmi")]
+position = Vector2(275, 45)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea11" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea11" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea11/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea11" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea11/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea12" parent="Directoinal" unique_id=928308477 instance=ExtResource("6_6fvmi")]
+position = Vector2(275, 105)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea12" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea12" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea12/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea12" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea12/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea13" parent="Directoinal" unique_id=1426250023 instance=ExtResource("6_6fvmi")]
+position = Vector2(275, 135)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea13" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea13" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea13/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea13" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea13/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea14" parent="Directoinal" unique_id=1938607011 instance=ExtResource("6_6fvmi")]
+position = Vector2(275, 165)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea14" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea14" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea14/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea14" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea14/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea15" parent="Directoinal" unique_id=45658215 instance=ExtResource("6_6fvmi")]
+position = Vector2(275, 195)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea15" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea15" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea15/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea15" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea15/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea24" parent="Directoinal" unique_id=1298374876 instance=ExtResource("6_6fvmi")]
+position = Vector2(155, 195)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea24" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea24" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea24/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea24" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea24/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea25" parent="Directoinal" unique_id=1483176795 instance=ExtResource("6_6fvmi")]
+position = Vector2(185, 165)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea25" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea25" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea25/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea25" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea25/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea26" parent="Directoinal" unique_id=1790474204 instance=ExtResource("6_6fvmi")]
+position = Vector2(135, 135)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea26" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea26" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea26/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea26" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea26/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea27" parent="Directoinal" unique_id=1686441012 instance=ExtResource("6_6fvmi")]
+position = Vector2(85, 225)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea27" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea27" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea27/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea27" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea27/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea28" parent="Directoinal" unique_id=1032644639 instance=ExtResource("6_6fvmi")]
+position = Vector2(65, 135)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea28" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea28" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea28/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea28" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea28/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea29" parent="Directoinal" unique_id=883785892 instance=ExtResource("6_6fvmi")]
+position = Vector2(155, 75)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea29" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea29" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea29/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea29" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea29/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea30" parent="Directoinal" unique_id=280690127 instance=ExtResource("6_6fvmi")]
+position = Vector2(65, 45)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea30" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea30" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea30/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea30" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea30/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea31" parent="Directoinal" unique_id=1900617218 instance=ExtResource("6_6fvmi")]
+position = Vector2(105, 255)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea31" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea31" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea31/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea31" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea31/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea16" parent="Directoinal" unique_id=1138566801 instance=ExtResource("6_6fvmi")]
+position = Vector2(275, 225)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea16" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea16" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea16/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea16" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea16/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
+
+[node name="DieDirectionalMovementArea17" parent="Directoinal" unique_id=1509577854 instance=ExtResource("6_6fvmi")]
+position = Vector2(275, 255)
+collision_mask = 17
+base_directions = Array[Vector2]([Vector2(-1, 0)])
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea17" index="0" unique_id=137769851]
+shape = SubResource("RectangleShape2D_yamd7")
+
+[node name="Sprite2D" parent="Directoinal/DieDirectionalMovementArea17" index="1" unique_id=92383046]
+position = Vector2(-4.999996, -4.9999933)
+scale = Vector2(9.9999895, 9.999988)
+
+[node name="PointLight2D2" parent="Directoinal/DieDirectionalMovementArea17/Sprite2D" index="0" unique_id=278936844]
+texture = SubResource("GradientTexture2D_6woj8")
+
+[node name="NearArea" parent="Directoinal/DieDirectionalMovementArea17" index="2" unique_id=275284376]
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="Directoinal/DieDirectionalMovementArea17/NearArea" index="0" unique_id=651984149]
+shape = SubResource("RectangleShape2D_elmpm")
 
 [node name="TextureRect" type="RichTextLabel" parent="." unique_id=101619519 groups=["text"]]
 modulate = Color(0.22745098, 0.22745098, 0.22745098, 1)
@@ -164,3 +1083,26 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
+
+[editable path="Directoinal/DieDirectionalMovementArea10"]
+[editable path="Directoinal/DieDirectionalMovementArea18"]
+[editable path="Directoinal/DieDirectionalMovementArea20"]
+[editable path="Directoinal/DieDirectionalMovementArea21"]
+[editable path="Directoinal/DieDirectionalMovementArea22"]
+[editable path="Directoinal/DieDirectionalMovementArea23"]
+[editable path="Directoinal/DieDirectionalMovementArea19"]
+[editable path="Directoinal/DieDirectionalMovementArea11"]
+[editable path="Directoinal/DieDirectionalMovementArea12"]
+[editable path="Directoinal/DieDirectionalMovementArea13"]
+[editable path="Directoinal/DieDirectionalMovementArea14"]
+[editable path="Directoinal/DieDirectionalMovementArea15"]
+[editable path="Directoinal/DieDirectionalMovementArea24"]
+[editable path="Directoinal/DieDirectionalMovementArea25"]
+[editable path="Directoinal/DieDirectionalMovementArea26"]
+[editable path="Directoinal/DieDirectionalMovementArea27"]
+[editable path="Directoinal/DieDirectionalMovementArea28"]
+[editable path="Directoinal/DieDirectionalMovementArea29"]
+[editable path="Directoinal/DieDirectionalMovementArea30"]
+[editable path="Directoinal/DieDirectionalMovementArea31"]
+[editable path="Directoinal/DieDirectionalMovementArea16"]
+[editable path="Directoinal/DieDirectionalMovementArea17"]

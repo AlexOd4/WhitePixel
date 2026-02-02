@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://itqmdoxrudqb" path="res://white.png" id="1_t453f"]
 [ext_resource type="PackedScene" uid="uid://oth15pqc8tbh" path="res://packed/player.tscn" id="2_ol6o8"]
 [ext_resource type="Script" uid="uid://dmrbjxkuvik78" path="res://scripts/gd/transitioner.gd" id="3_3m3i8"]
-[ext_resource type="Script" uid="uid://cqn0rrxwerl2u" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="4_jwlch"]
 [ext_resource type="PackedScene" uid="uid://wxrcwp7tw010" path="res://packed/box_area_2d.tscn" id="4_t453f"]
 [ext_resource type="PackedScene" uid="uid://dodwilf6p6goe" path="res://packed/die_moving_area_2d.tscn" id="5_p1s17"]
 
@@ -369,10 +368,6 @@ position = Vector2(65, 75)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1775962103]
 position = Vector2(150, 150)
-
-[node name="ShakerComponent2D" type="Node2D" parent="Camera2D" unique_id=1645913279]
-script = ExtResource("4_jwlch")
-metadata/_custom_type_script = "uid://cqn0rrxwerl2u"
 
 [node name="DieDirectionalMovementArea" parent="." unique_id=558758495 instance=ExtResource("5_p1s17")]
 position = Vector2(225, 65)

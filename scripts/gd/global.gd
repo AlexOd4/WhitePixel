@@ -5,7 +5,6 @@ signal movement_input(global_movement_counter: int, movement_direction:Vector2)
 var is_loading:bool = false
 var movement_counter:int = 0:
 	set(value):
-		if is_holding: await get_tree().create_timer(.5).timeout
 		if not only_one_direction: return
 		if stop_adding_counter: return
 		
@@ -53,8 +52,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_pressed():
 		stop_adding_counter = false
-		if is_holding: 
-			await get_tree().create_timer(.5).timeout
+		if is_holding: return
 			
 		movement_counter += 1
 	elif event.is_released():

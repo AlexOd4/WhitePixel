@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://itqmdoxrudqb" path="res://white.png" id="1_ysps8"]
 [ext_resource type="PackedScene" uid="uid://oth15pqc8tbh" path="res://packed/player.tscn" id="2_kuju8"]
 [ext_resource type="Script" uid="uid://dmrbjxkuvik78" path="res://scripts/gd/transitioner.gd" id="3_5wkvw"]
-[ext_resource type="Script" uid="uid://cqn0rrxwerl2u" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="4_fktkv"]
 [ext_resource type="PackedScene" uid="uid://dodwilf6p6goe" path="res://packed/die_moving_area_2d.tscn" id="5_clw6y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ypeg"]
@@ -258,10 +257,6 @@ shape = SubResource("RectangleShape2D_mmxta")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1775962103]
 position = Vector2(150, 150)
-
-[node name="ShakerComponent2D" type="Node2D" parent="Camera2D" unique_id=1645913279]
-script = ExtResource("4_fktkv")
-metadata/_custom_type_script = "uid://cqn0rrxwerl2u"
 
 [node name="DieArea2D" type="Area2D" parent="." unique_id=1221532880]
 collision_layer = 2
