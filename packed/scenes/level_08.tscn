@@ -139,7 +139,7 @@ position = Vector2(125, 125)
 position = Vector2(295, 140)
 collision_layer = 2
 script = ExtResource("3_enk84")
-scene_to_changue = 5
+scene_to_changue = 8
 
 [node name="Sprite2D2" type="Sprite2D" parent="WinArea2D" unique_id=681259425]
 modulate = Color(0, 1, 0, 1)
