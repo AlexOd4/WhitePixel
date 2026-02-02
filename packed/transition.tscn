@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bll7ejjvpduku"]
+[gd_scene format=3 uid="uid://bll7ejjvpduku"]
 
 [ext_resource type="Shader" uid="uid://b6u055ect1sfx" path="res://scripts/shader/crt_shader.gdshader" id="1_6hxnk"]
 [ext_resource type="Script" uid="uid://xaf6oq0oqsah" path="res://scripts/gd/transition.gd" id="1_pmqw2"]
+[ext_resource type="AudioStream" uid="uid://qi5lus1wwfhg" path="res://sounds/Song.wav" id="3_kkl56"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pmqw2"]
 shader = ExtResource("1_6hxnk")
@@ -346,11 +347,11 @@ _data = {
 &"transition_start": SubResource("Animation_pmqw2")
 }
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1247344208]
 layer = 5
 script = ExtResource("1_pmqw2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1058461983]
 material = SubResource("ShaderMaterial_pmqw2")
 anchors_preset = 15
 anchor_right = 1.0
@@ -358,7 +359,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRectDown" type="ColorRect" parent="."]
+[node name="ColorRectDown" type="ColorRect" parent="." unique_id=2122975159]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -368,7 +369,7 @@ offset_bottom = 85.00043
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRectUp" type="ColorRect" parent="."]
+[node name="ColorRectUp" type="ColorRect" parent="." unique_id=376369332]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -378,7 +379,7 @@ offset_bottom = -315.00116
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRectLeft" type="ColorRect" parent="."]
+[node name="ColorRectLeft" type="ColorRect" parent="." unique_id=1240878630]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -391,7 +392,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5707964
 
-[node name="ColorRectRight" type="ColorRect" parent="."]
+[node name="ColorRectRight" type="ColorRect" parent="." unique_id=169116807]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -404,12 +405,14 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5707964
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=160171565]
 position = Vector2(150, 150)
 scale = Vector2(4.6875, 4.6875)
 texture = SubResource("GradientTexture2D_kkl56")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_kkl56")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1592324725]
+libraries/ = SubResource("AnimationLibrary_kkl56")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1752555655]
+stream = ExtResource("3_kkl56")
+autoplay = true
