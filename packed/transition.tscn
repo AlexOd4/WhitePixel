@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://b6u055ect1sfx" path="res://scripts/shader/crt_shader.gdshader" id="1_6hxnk"]
 [ext_resource type="Script" uid="uid://xaf6oq0oqsah" path="res://scripts/gd/transition.gd" id="1_pmqw2"]
 [ext_resource type="AudioStream" uid="uid://qi5lus1wwfhg" path="res://sounds/Song.wav" id="3_kkl56"]
+[ext_resource type="AudioStream" uid="uid://d4b828jf8odyy" path="res://sounds/static.mp3" id="4_rm58p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pmqw2"]
 shader = ExtResource("1_6hxnk")
@@ -347,6 +348,12 @@ _data = {
 &"transition_start": SubResource("Animation_pmqw2")
 }
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_r0twv"]
+fade_time = 0.5
+stream_count = 2
+stream_0 = ExtResource("3_kkl56")
+stream_1 = ExtResource("3_kkl56")
+
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1247344208]
 layer = 5
 script = ExtResource("1_pmqw2")
@@ -414,5 +421,12 @@ texture = SubResource("GradientTexture2D_kkl56")
 libraries/ = SubResource("AnimationLibrary_kkl56")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1752555655]
-stream = ExtResource("3_kkl56")
+stream = SubResource("AudioStreamPlaylist_r0twv")
+volume_db = -10.0
 autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1017757135]
+stream = ExtResource("4_rm58p")
+volume_db = -20.0
+autoplay = true
+bus = &"static"

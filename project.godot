@@ -19,9 +19,14 @@ run/main_scene="uid://cj4kc4js7dywv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://ccdg4idu1268b"
+
 [autoload]
 
 Global="*res://scripts/gd/global.gd"
+Shaker="*uid://ekkkl0i8v2b4"
 Transition="*res://packed/transition.tscn"
 
 [display]
@@ -29,6 +34,7 @@ Transition="*res://packed/transition.tscn"
 window/size/viewport_width=300
 window/size/viewport_height=300
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
@@ -80,5 +86,6 @@ none={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

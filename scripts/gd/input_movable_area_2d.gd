@@ -32,5 +32,6 @@ func movement_and_comprovements(movement_direction:Vector2):
 			area.push(movement_direction, movement_distance)
 	
 	move(movement_direction)
-	
+	$AudioStreamPlayer.pitch_scale = randf_range(.5, 1.5)
+	$AudioStreamPlayer.play()
 	#global_position = Vector2(global_position + movement_direction * movement_distance)

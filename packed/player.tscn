@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://oth15pqc8tbh"]
 
 [ext_resource type="Script" uid="uid://bkkn5k0g3rdyd" path="res://scripts/gd/input_movable_area_2d.gd" id="1_c020k"]
-[ext_resource type="AudioStream" uid="uid://cydtqcj1c1wsp" path="res://sounds/tone_1.ogg" id="2_fo205"]
+[ext_resource type="AudioStream" uid="uid://ewmmdy05anwa" path="res://sounds/Blip5.wav" id="2_fo205"]
 
 [sub_resource type="Gradient" id="Gradient_c020k"]
 offsets = PackedFloat32Array(1)
@@ -41,6 +41,7 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FarArea" unique_id=948373005]
 shape = SubResource("RectangleShape2D_xakqq")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1910272206]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1767481915]
 stream = ExtResource("2_fo205")
-autoplay = true
+volume_db = -35.0
+bus = &"static"
